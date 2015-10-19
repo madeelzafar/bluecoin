@@ -25,7 +25,7 @@ import au.com.ibm.bluecoin.dao.IUserDao;
 import au.com.ibm.bluecoin.dao.relational.UserDao;
 
 @Configuration
-@EnableJpaRepositories(basePackages = "au.com.ibm.supportal.dao.relational.repository")
+@EnableJpaRepositories(basePackages = "au.com.ibm.bluecoin.dao.relational.repository")
 @EnableTransactionManagement
 public class ModelJPAConfig {
 
@@ -36,7 +36,7 @@ public class ModelJPAConfig {
 		DataSource dataSource = null;
 		
 		EmbeddedDatabaseBuilder builder = new EmbeddedDatabaseBuilder();
-		dataSource = builder.setName("test-supportal-db").setType(EmbeddedDatabaseType.H2).build();
+		dataSource = builder.setName("test-bluecoin-db").setType(EmbeddedDatabaseType.H2).build();
         
         return dataSource;
 	}

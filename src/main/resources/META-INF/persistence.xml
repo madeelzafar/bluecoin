@@ -19,7 +19,7 @@
 		<!-- 
  		<provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
 		-->
-		<jta-data-source>jdbc/supportal-db</jta-data-source>
+		<jta-data-source>jdbc/bluecoin-db</jta-data-source>
 		
 		<!-- 
 		<non-jta-data-source>supportal-db</non-jta-data-source>

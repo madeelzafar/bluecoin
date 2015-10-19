@@ -20,7 +20,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 public class ApplicationConfig {
 
 	@Bean public org.apache.openejb.spring.Resource supportalDb() {
-		Resource supportalDb = new Resource();
+		Resource bluecoinDb = new Resource();
 		
 		/*
 		<property name="type" value="javax.sql.DataSource" />
@@ -32,15 +32,15 @@ public class ApplicationConfig {
 			</props>
 		</property>
 		 */
-		supportalDb.setType("javax.sql.DataSource");
-		supportalDb.setId("jdbc/supportal-db");
+		bluecoinDb.setType("javax.sql.DataSource");
+		bluecoinDb.setId("jdbc/bluecoin-db");
 		
 		Properties properties = new Properties();
 		properties.put("JdbcDriver", "org.h2.Driver");
 		properties.put("JdbcUrl", "jdbc:h2:mem:supportal-db");
-		supportalDb.setProperties(properties);
+		bluecoinDb.setProperties(properties);
 		
-		return supportalDb;
+		return bluecoinDb;
 	}
 
 	

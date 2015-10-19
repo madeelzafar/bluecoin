@@ -13,7 +13,7 @@
 	<persistence-unit name="test-supportal-db" transaction-type="RESOURCE_LOCAL">
 		<provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
 		
-		<non-jta-data-source>test-supportal-db</non-jta-data-source>
+		<non-jta-data-source>test-bluecoin-db</non-jta-data-source>
 		
 		<exclude-unlisted-classes>false</exclude-unlisted-classes>
 		

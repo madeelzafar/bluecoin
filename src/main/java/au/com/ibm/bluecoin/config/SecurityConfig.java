@@ -16,8 +16,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 @EnableWebSecurity
 @Configuration
-@ComponentScan({ "au.com.ibm.supportal.config", "au.com.ibm.supportal.service.impl", "au.com.ibm.supportal.config", "au.com.ibm.supportal.dao.relational",
-		"au.com.ibm.supportal.dao", "au.com.ibm.supportal.dao.relational", "au.com.ibm.supportal.scaffold" })
+@ComponentScan({ "au.com.ibm.bluecoin.config", "au.com.ibm.bluecoin.service.impl", "au.com.ibm.bluecoin.config", "au.com.ibm.bluecoin.dao.relational",
+		"au.com.ibm.bluecoin.dao", "au.com.ibm.bluecoin.dao.relational", "au.com.ibm.bluecoin.scaffold" })
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Autowired
