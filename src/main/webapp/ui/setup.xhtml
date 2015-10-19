@@ -1,0 +1,43 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+	<h:form id="form">
+		<div class="Container100">
+			<div class="ContainerIndent">
+				<div class="Card ShadowEffect TexAlLeft">
+					<div class="Wid100">
+						<h2 class="BigTopic"><i class="fa fa-wrench MarRight10"></i>Set Up</h2>
+					</div>
+
+					<div class="Separator" />
+
+					<!-- All Service Lines  -->
+					<p:dataTable id="countDataTbl" var="item"
+						value="#{setUpForm.counts}"
+						tableStyleClass="ui-table-columntoggle" style="font-size:small">
+
+						<p:column headerText="Entity" priority="1">
+							<h:outputText value="#{item.entity}" />
+						</p:column>
+
+						<p:column headerText="Count" priority="1">
+							<h:outputText value="#{item.count}" />
+						</p:column>
+
+					</p:dataTable>
+
+					<div class="Separator" />
+
+					<p:commandButton value="Initialise"
+						action="#{setUpForm.initialiseDB}" ajax="true"
+						update="countDataTbl" icon="ui-icon-recycle" />
+				</div>
+			</div>
+		</div>
+
+	</h:form>
+
+</ui:composition>

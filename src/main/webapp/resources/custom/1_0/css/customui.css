@@ -1,0 +1,7 @@
+.borderlessGrid {
+	border: none;
+}
+
+.borderlessGrid.ui-panelgrid>tbody>tr, .borderlessGrid.ui-panelgrid>tbody>tr>td {
+    border: none !important;
+}

@@ -1,0 +1,85 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+	<h:form id="form">
+		<div class="Container100">
+
+			<div class="Container100 Responsive100">
+				<div class="Container100 Responsive100">
+					<div class="ContainerIndent">
+						<div class="Card ShadowEffect">
+							<div class="Wid100">
+
+								<h2 class="BigTopic">
+									<i class="fa fa-user MarRight10"></i>#{appUserForm.viewOneTitle}
+									<h:outputText id="headerLbl"
+										value=" [#{appUserForm.sessionModel.model.id}]" />
+								</h2>
+							</div>
+
+							<div class="Separator" />
+
+							<h:inputHidden id="version"
+								value="#{appUserForm.sessionModel.model.version}"
+								rendered="#{appUserForm.sessionModel.editMode}" />
+
+							<p:panelGrid id="fields" columns="2" layout="grid"
+								style="border:0px !important; background:none;"
+								styleClass="FormContent">
+								<p:columnGroup>
+									<h:outputText value="UserName:" styleClass="Fleft Wid30"/>
+									<p:inputText id="userNameNew"
+										value="#{appUserForm.sessionModel.model.login}"
+										disabled="#{appUserForm.sessionModel.editMode}" />
+									
+								</p:columnGroup>
+								<p:columnGroup />
+								<p:columnGroup>
+									<h:outputText value="Password:" styleClass="Fleft Wid30"/>
+									<p:password feedback="true" id="passwordNew" value="#{appUserForm.password}"
+										disabled="#{appUserForm.sessionModel.editMode}"
+										rendered="#{! loginForm.validateAdmin()}" />
+									<p:commandButton id="resetB" action="#{appUserForm.resetPwd()}"
+										value="Reset" ajax="true"
+										update="mainContent, form, growl" icon="fa fa-key Red"
+										styleClass="RaisedButton GrayButton BoldGray" process="@form"
+										style="margin-right: 5px!important;margin-bottom: 5px!important;"
+										rendered="#{appUserForm.sessionModel.editMode}" />
+									<h:outputText value="Setting to default password" rendered="#{appUserForm.sessionModel.newMode and loginForm.validateAdmin()}"/>
+								</p:columnGroup>
+								<p:columnGroup />
+								<p:selectManyCheckbox id="grid2" rendered="#{loginForm.validateAdmin()}"
+									style="margin-top:15px;margin-bottom:15px;"
+									value="#{appUserForm.sessionModel.model.selectedRolesList}">
+									<f:selectItems value="#{appUserForm.allRolesList}" var="city"
+										itemLabel="#{city}" itemValue="#{city}"
+										itemDisabled="#{appUserForm.isDisbaledToModify(city)}"
+										style="border:0px !important; background:none!important;" />
+								</p:selectManyCheckbox>
+								<p:columnGroup/>
+								
+							</p:panelGrid>
+							<div class="Separator" />
+							<p:commandButton id="backB" action="#{appUserForm.goBack()}"
+								ajax="true" update="mainContent, form, growl"
+								icon="fa fa-arrow-left"
+								styleClass="RaisedButton OrangeButton White" process="@form"
+								style="margin-right: 5px!important;margin-bottom: 5px!important;"
+								rendered="#{appUserForm.sessionModel.editMode}" />
+							<p:commandButton id="save" action="#{appUserForm.save}"
+								ajax="true" update="form, growl" icon="fa fa-save"
+								styleClass="RaisedButton White" process="@form" />
+
+						</div>
+					</div>
+				</div>
+			</div>
+
+
+		</div>
+	</h:form>
+
+</ui:composition>

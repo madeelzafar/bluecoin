@@ -1,0 +1,84 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+
+	<h:form id="form">
+		<div class="Container100">
+
+			<div class="Container100 Responsive">
+				<div class="ContainerIndent">
+					<div class="Card ShadowEffect">
+
+						<div class="Container50 Responsive">
+							<h2 class="CardTopic Fs18 Blue">
+								<i class="fa fa-search MarRight10"></i>Search
+							</h2>
+							<p:separator styleClass="Wid90 Fleft"></p:separator>
+							<br /><h:outputText styleClass="Gray" value="Enter User Name substring to search for"></h:outputText>
+							<br/><p></p>
+							<h:outputLabel for="op1"
+								value="UserName:" />
+							<p:inputText id="op1" style="margin-bottom: 5px;"
+								value="#{appUserForm.search.genericSearchString}"
+								placeholder="Any" />
+							<p:commandButton action="#{appUserForm.searchByIDOrName}"
+								alt="Search" ajax="true" update="mainContent, form, growl"
+								process="@form" icon="fa fa-search"
+								styleClass="RaisedButton White" style="margin-left: 5px!important;margin-bottom: 5px!important;"/>
+							<p:commandButton icon="fa fa-undo" process="@form"
+								action="#{appUserForm.resetSearch}"
+								update="mainContent, form, growl"
+								styleClass="GrayButton Red RaisedButton" style="margin-left: 5px!important;margin-bottom: 5px!important;"/>
+							<br /> <br /> <br />
+						</div>
+					</div>
+				</div>
+			</div>
+		
+
+		<div class="Container100 Responsive100">
+			<div class="ContainerIndent">
+				<div class="Card ShadowEffect">
+						<h2 class="BigTopic">
+							<i class="fa fa-users MarRight10"></i>#{appUserForm.viewListTitle}
+						</h2>
+
+					<p:dataTable id="dtappUsers" var="usr"
+						value="#{appUserForm.sessionModel.results}"
+						style="font-size:small" rows="5" paginator="true"
+						paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+						rowsPerPageTemplate="5,10,15" reflow="true">
+
+						<p:column headerText="UserName" priority="1">
+							<h:outputText value="  #{usr.login}" />
+							<h:inputHidden value="#{usr.version}" />
+						</p:column>
+						<p:column headerText="Roles" priority="1">
+							<h:outputText value="#{usr.rolesDisplayString}" />
+						</p:column>
+						<p:column headerText="Actions" priority="1">
+							<p:commandButton action="#{appUserForm.viewOne(usr)}"
+								ajax="true" update="mainContent, form, growl" process="@this"
+								icon="fa fa-arrow-right" styleClass="RaisedButton White" 
+								disabled="#{appUserForm.isDisbaledToModify(usr.login)}"/>
+							<p:commandButton action="#{appUserForm.remove(usr)}"
+								ajax="true" update="mainContent, form, growl" process="@this"
+								icon="fa fa-remove" styleClass="RaisedButton GrayButton Red"
+								disabled="#{appUserForm.isDisbaledToModify(usr.login)}" />
+						</p:column>
+					</p:dataTable>
+					<br/>
+					<p:commandButton action="#{appUserForm.viewNewOne()}"
+								ajax="true" update="mainContent, form, growl" process="@this"
+								icon="fa fa-user-plus" styleClass="RaisedButton White" />
+				</div>
+			</div>
+		</div>
+
+		</div>
+	</h:form>
+
+</ui:composition>
