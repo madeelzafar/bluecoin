@@ -24,7 +24,7 @@ import au.com.ibm.bluecoin.utils.UserRepositoryUserDetails;
 @Service
 public class CustomUserDetailsService implements UserDetailsService {
 
-	@EJB(mappedName="java:module/UserSvc!au.com.ibm.supportal.service.impl.UserSvc")
+	@EJB(mappedName="java:module/UserSvc!au.com.ibm.bluecoin.service.impl.UserSvc")
 	private IUserSvc userSvc;
 	
 	@Override

@@ -20,7 +20,7 @@
                             "ref": "Console"
                     }},
                     {
-                    "name": "au.com.ibm.supportal",
+                    "name": "au.com.ibm.bluecoin",
                     "level": "debug",
                     "additivity": "false",
                     "AppenderRef": {

@@ -21,8 +21,8 @@ public abstract class ContainerTests {
 	
 	private static final String WEB_INF = "src/main/webapp/WEB-INF";
 	private static final String META_INF = "src/main/resources/META-INF";
-	private static final String APP_ROOT = "au/com/ibm/supportal";
-	private static final String APP_ROOT_PACKAGE = "au.com.ibm.supportal";
+	private static final String APP_ROOT = "au/com/ibm/bluecoin";
+	private static final String APP_ROOT_PACKAGE = "au.com.ibm.bluecoin";
 	private static final String WEBAPP_SRC = "src/main/webapp";
 	private static final String WEBAPP_LIB = "src/main/webapp/WEB-INF/lib";
 	
@@ -32,12 +32,12 @@ public abstract class ContainerTests {
     	File[] files = Maven.resolver().loadPomFromFile("pom.xml")
                 .importRuntimeDependencies().resolve().withTransitivity().asFile();
     	
-    	WebArchive war = ShrinkWrap.create(WebArchive.class, "test-supportal.war")
+    	WebArchive war = ShrinkWrap.create(WebArchive.class, "test-bluecoin.war")
     			.addAsLibraries(files)
     			
     			// need to filter out non container tests
-    			.addPackages(true, Filters.include(".*ContainerTest.*"), "au.com.ibm.supportal")
-    			.addPackages(true, Filters.exclude(".*Test.*|.*ModelJPAConfig.*|.*ApplicationConfig.*"), "au.com.ibm.supportal")
+    			.addPackages(true, Filters.include(".*ContainerTest.*"), "au.com.ibm.bluecoin")
+    			.addPackages(true, Filters.exclude(".*Test.*|.*ModelJPAConfig.*|.*ApplicationConfig.*"), "au.com.ibm.bluecoin")
 
     			// need to added arquillian test to war
     			.addPackages(true, "au.com.ibm.arquillian")

@@ -12,6 +12,6 @@ public class CdiConfig {
 	
     @Produces  
     @Dependent  
-    @PersistenceContext(unitName="supportal-db")  
+    @PersistenceContext(unitName="bluecoin-db")  
     private EntityManager entityManager;    
 }

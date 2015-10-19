@@ -19,7 +19,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @EnableTransactionManagement
 public class ApplicationConfig {
 
-	@Bean public org.apache.openejb.spring.Resource supportalDb() {
+	@Bean public org.apache.openejb.spring.Resource bluecoinDb() {
 		Resource bluecoinDb = new Resource();
 		
 		/*
@@ -37,7 +37,7 @@ public class ApplicationConfig {
 		
 		Properties properties = new Properties();
 		properties.put("JdbcDriver", "org.h2.Driver");
-		properties.put("JdbcUrl", "jdbc:h2:mem:supportal-db");
+		properties.put("JdbcUrl", "jdbc:h2:mem:bluecoin-db");
 		bluecoinDb.setProperties(properties);
 		
 		return bluecoinDb;
@@ -75,7 +75,7 @@ public class ApplicationConfig {
 		openEJB.setProperties(properties);
 		
 		List<org.apache.openejb.spring.Resource> resources = new ArrayList<org.apache.openejb.spring.Resource>();
-		resources.add(supportalDb());
+		resources.add(bluecoinDb());
 		openEJB.setResources(resources);
 		//openEJB.setTransactionManager(txnManager());
 		

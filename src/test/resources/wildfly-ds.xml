@@ -5,9 +5,9 @@
         http://www.jboss.org/ironjacamar/schema
         http://docs.jboss.org/ironjacamar/schema/datasources_1_0.xsd">
     <datasource enabled="true"
-        jndi-name="jdbc/supportal-db"
+        jndi-name="jdbc/bluecoin-db"
         pool-name="h2">
-        <connection-url>jdbc:h2:mem:supportal-db</connection-url>
+        <connection-url>jdbc:h2:mem:bluecoin-db</connection-url>
         <driver>h2</driver>
     </datasource>
 </datasources>
