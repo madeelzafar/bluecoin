@@ -14,16 +14,131 @@
 
     <h:form id="form">
     
-	    <div class="Container50 Responsive100">    	
-	    	<div class="ContentIndent">
+	    <div class="Container50 Responsive100">    
+	    	<div class="ContainerIndent">
 	    		<div class="Card">
+	                <div class="CardTopic"> <i class="fa fa-arrow-circle-o-down Fs30 Fleft MarRight10"/>
+	                    <div class="EmptyBox10 ShowOnMobile"/>
+	                    Inbound Balance<br/>
+	                    <span class="CardSubTopic">Bluecoins you have received.</span> 
+	                </div>
+	                <div class="Separator"/>
+	                
+	                <div class="Container100 Responsive100">
+				    	<div class="ContainerIndent">
+	                        <div class="Card BlueBack Opac60 TexAlCenter">
+	                            <div class="DispInlBlock TexAlCenter">
+	                                <!--<i class="fa fa-btc White Fs40"/>--><span class="Fs40 FontAdamantiumBold White">4,500.00</span><br/>
+	                            </div>
+
+								<div class="EmptyBox30"/>
+								<div><p:commandButton value="Transfer" styleClass="OrangeButton RaisedButton"/></div>
+	                        </div>
+				    	</div>
+	                </div>
+	                
+	                <div class="Container100 Responsive100">
+				    	<div class="ContainerIndent">
+				    		<div class="Card SoftGrayBack">
+				    			<p:panelGrid styleClass="Wid100 noBorderGrid SoftGrayBack" style="border: none !important;">
+									
+									<p:row>
+										<p:column><i class="fa  fa-empire Red Fs40"/></p:column>
+										<p:column><h:commandLink styleClass="Underline">Client</h:commandLink></p:column>
+										<p:column styleClass="TexAlRight"><h:outputText>1</h:outputText></p:column>
+									</p:row>
+									<p:row><p:column colspan="3"><div class="Separator"/></p:column></p:row>
+									
+									<p:row>
+										<p:column><i class="fa  fa-empire Green Fs40"/></p:column>
+										<p:column><h:commandLink styleClass="Underline">1-3-9</h:commandLink></p:column>
+										<p:column styleClass="TexAlRight"><h:outputText>1</h:outputText></p:column>
+									</p:row>
+									<p:row><p:column colspan="3"><div class="Separator"/></p:column></p:row>
+
+									<p:row>
+										<p:column><i class="fa  fa-empire Blue Fs40"/></p:column>
+										<p:column><h:commandLink styleClass="Underline">Blue Coin</h:commandLink></p:column>
+										<p:column styleClass="TexAlRight"><h:outputText>1</h:outputText></p:column>
+									</p:row>
+									<p:row><p:column colspan="3"><div class="Separator"/></p:column></p:row>
+
+									<p:row>
+										<p:column><i class="fa  fa-star Yellow Fs40"/></p:column>
+										<p:column><h:commandLink styleClass="Underline">One Team</h:commandLink></p:column>
+										<p:column styleClass="TexAlRight"><h:outputText>1</h:outputText></p:column>
+									</p:row>
+
+				    			</p:panelGrid>
+				    		</div>
+				    	</div>
+	                </div>
+
 	    		</div>
 	    	</div>
 	    </div>
 	        
 	    <div class="Container50 Responsive100">    	
-	    	<div class="ContentIndent">
+	    	<div class="ContainerIndent">
 	    		<div class="Card">
+	                <div class="CardTopic"> <i class="fa fa-arrow-circle-o-up Fs30 Fleft MarRight10"/>
+	                    <div class="EmptyBox10 ShowOnMobile"/>
+	                    Outbound Balance<br/>
+	                    <span class="CardSubTopic">Bluecoins you can send.</span> 
+	                </div>
+	                <div class="Separator"/>
+	                
+	                <div class="Container100 Responsive100">
+				    	<div class="ContainerIndent">
+	                        <div class="Card PurpleBack Opac60 TexAlCenter">
+	                            <div class="DispInlBlock TexAlCenter">
+	                                <!--<i class="fa fa-btc White Fs40"/>--><span class="Fs40 FontAdamantiumBold White">1,000.00</span><br/>
+	                            </div>
+
+								<div class="EmptyBox30"/>
+								<div><p:commandButton value="Send" styleClass="OrangeButton RaisedButton" ajax="true" action="#{navigationBean.send}" process="@form" update="mainContent, form"/></div>
+								
+	                        </div>
+				    	</div>
+	                </div>
+	                
+	                <div class="Container100 Responsive100">
+				    	<div class="ContainerIndent">
+				    		<div class="Card SoftGrayBack">
+				    			<p:panelGrid styleClass="Wid100 noBorderGrid SoftGrayBack" style="border: none !important;">
+									
+									<p:row>
+										<p:column><i class="fa  fa-empire Red Fs40"/></p:column>
+										<p:column><h:commandLink styleClass="Underline">Client</h:commandLink></p:column>
+										<p:column styleClass="TexAlRight"><h:outputText>1</h:outputText></p:column>
+									</p:row>
+									<p:row style="padding: 0px"><p:column colspan="3"><div class="Separator"/></p:column></p:row>
+
+									<p:row>
+										<p:column><i class="fa  fa-empire Green Fs40"/></p:column>
+										<p:column><h:commandLink styleClass="Underline">1-3-9</h:commandLink></p:column>
+										<p:column styleClass="TexAlRight"><h:outputText>1</h:outputText></p:column>
+									</p:row>
+									<p:row style="padding: 0px"><p:column colspan="3"><div class="Separator"/></p:column></p:row>
+									
+									<p:row>
+										<p:column><i class="fa  fa-empire Blue Fs40"/></p:column>
+										<p:column><h:commandLink styleClass="Underline">Blue Coin</h:commandLink></p:column>
+										<p:column styleClass="TexAlRight"><h:outputText>1</h:outputText></p:column>
+									</p:row>
+									<p:row><p:column colspan="3"><div class="Separator"/></p:column></p:row>
+
+									<p:row>
+										<p:column><i class="fa  fa-star Yellow Fs40"/></p:column>
+										<p:column><h:commandLink styleClass="Underline">One Team</h:commandLink></p:column>
+										<p:column styleClass="TexAlRight"><h:outputText>1</h:outputText></p:column>
+									</p:row>
+
+				    			</p:panelGrid>
+				    		</div>
+				    	</div>
+	                </div>
+
 	    		</div>
 	    	</div>
 	    </div>

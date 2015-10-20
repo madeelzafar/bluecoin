@@ -15,7 +15,8 @@
 		
 		<non-jta-data-source>test-bluecoin-db</non-jta-data-source>
 		
-		<exclude-unlisted-classes>false</exclude-unlisted-classes>
+		<class>au.com.ibm.bluecoin.model.relational.AppUser</class>
+		<!-- <exclude-unlisted-classes>false</exclude-unlisted-classes> -->
 		
 		<properties>
 			 

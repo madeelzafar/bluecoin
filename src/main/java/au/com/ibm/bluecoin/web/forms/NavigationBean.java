@@ -3,6 +3,9 @@ package au.com.ibm.bluecoin.web.forms;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import au.com.ibm.bluecoin.utils.PageDetails;
 
 /**
@@ -14,6 +17,8 @@ import au.com.ibm.bluecoin.utils.PageDetails;
 @ManagedBean
 public class NavigationBean {
 
+	private static final Logger LOGGER = LoggerFactory.getLogger(NavigationBean.class);
+	
 	// FIXME this bean maybe redundant as the actual form that we are navigating to should have the knowledge on how to
 	// setup the sessionModel correctly.
 	
@@ -33,6 +38,11 @@ public class NavigationBean {
 		
 	public void login() {
 		getSessionModel().setContent("login.xhtml");
+	}
+
+	public void send() {
+		LOGGER.info("Send coins");
+		getSessionModel().setContent("/ui/send.xhtml");
 	}
 
 	public SessionModel getSessionModel() {
