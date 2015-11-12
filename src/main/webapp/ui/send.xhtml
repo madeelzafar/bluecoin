@@ -29,8 +29,8 @@
 				    			<p:panelGrid styleClass="noBorderGrid" style="border: none !important; padding: 4px">
 									
 									<p:row>
-										<p:column style="width:150px"><h:outputText>Recieptent:</h:outputText></p:column>
-										<p:column><p:inputText/></p:column>
+										<p:column style="width:150px"><h:outputText>Recipient:</h:outputText></p:column>
+										<p:column><p:inputText value="#{sendCoinsBean.recipient}"/></p:column>
 										<p:column/>
 									</p:row>
 
@@ -47,12 +47,17 @@
 									</p:row>
 
 									<p:row>
-										<p:column><h:outputText>Ammount:</h:outputText></p:column>
-										<p:column><p:inputText/></p:column>
+										<p:column><h:outputText>Amount:</h:outputText></p:column>
+										<p:column><p:inputText value="#{sendCoinsBean.amount}"/></p:column>
 										<p:column></p:column>
 									</p:row>
-
+									
+									
+							
 				    			</p:panelGrid>
+								
+								<h:commandButton value="Send" styleClass="OrangeButton RaisedButton"  action="#{sendCoinsBean.sendCoins}"/>
+		
 				    		</div>
 				    	</div>
 	                </div>
