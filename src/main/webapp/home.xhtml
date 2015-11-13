@@ -1,0 +1,65 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui">
+
+    <ui:define name="head">
+
+    </ui:define>
+    
+    <ui:define name="subheader">
+        Home
+    </ui:define>
+
+    <h:form id="form">
+    
+	    <div class="Container50 Responsive100">    	
+	    	<div class="ContainerIndent">
+	    		<div class="Card">
+	                <div class="CardTopic"> <i class="fa fa-arrow-circle-o-up Fs40 Fleft MarRight10"/>
+	                    <div class="EmptyBox10 ShowOnMobile"/>
+	                    Welcome ${loginForm.userName}<br/>
+	                    <span class="CardSubTopic">Bluecoins you can send.</span> 
+	                </div>
+	                <div class="Separator"/>
+	                
+	         
+	                
+	                <div class="Container100 Responsive100">
+				    	<div class="ContainerIndent">
+				    		<div class="Card SoftGrayBack">
+				    	
+				    	  			<p:panelGrid styleClass="Wid100 noBorderGrid SoftGrayBack" style="border: none !important;">
+									
+										<p:row>
+									   		<p:column><div class="EmptyBox10 ShowOnMobile"></div><p:button value="Cash Award" icon="fa fa-money" styleClass="Fs30 FontAdamantiumBold GreenButton" style="width:500px;height:80px"/></p:column>
+                            			</p:row>
+                            			<p:row>
+				    	    				<p:column><div class="EmptyBox30 ShowOnMobile"></div><p:button value="Team Award" icon="fa fa-group" styleClass="Fs30 FontAdamantiumBold YellowButton" style="width:500px;height:80px" /></p:column>
+				    	  				</p:row>
+                            			<p:row>
+				    	   					<p:column><div class="EmptyBox10 ShowOnMobile"></div><p:button value="One Team" icon="fa fa-gift" styleClass="Fs30 FontAdamantiumBold  RedButton" style="width:500px;height:80px"/></p:column>
+				    	  				</p:row>
+				    	  				
+				    	  				<p:row>
+				    	
+				    	   					<p:column>	<div class="EmptyBox10 ShowOnMobile"></div>
+                        						<p:commandButton value="Blue Coins" icon="fa fa-lock" styleClass="Fs30 FontAdamantiumBold BlueButton" style="width:500px;height:80px" ajax="true" action="#{navigationBean.dashboard}" process="@form" update="mainContent, form"/>
+											</p:column>
+				    	  			</p:row>
+                            
+                            			
+				    	  	</p:panelGrid>
+                          
+				    		</div>
+				    	</div>
+	                </div>
+
+	    		</div>
+	    	</div>
+	    </div>
+
+    </h:form>
+
+</ui:composition>

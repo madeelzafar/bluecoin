@@ -10,6 +10,7 @@ import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -31,6 +32,7 @@ import au.com.ibm.bluecoin.utils.Role;
 import au.com.ibm.bluecoin.utils.ValidationUtils;
 
 @ManagedBean
+@SessionScoped
 public class LoginForm extends AbstractMaintenanceForm<String, AppUser> {
 
 	private String userName;
@@ -50,7 +52,7 @@ public class LoginForm extends AbstractMaintenanceForm<String, AppUser> {
 		this.userSvc = userSvc;
 	}
 
-	@PostConstruct
+	/*@PostConstruct
 	public void init() {
 		// TODO temporary convience for login
 		setUserName("");
@@ -61,7 +63,7 @@ public class LoginForm extends AbstractMaintenanceForm<String, AppUser> {
 			setLoggedUser(authToken.getName());
 			setLoggedRole(validateAdmin() ? Role.ADMIN.display() : Role.USER.display());
 		}
-	}
+	}*/
 
 	private void printUser(Authentication authToken) {
 		System.out.print("Login Name=" + authToken.getName()+", Login Role=" + authToken.getAuthorities()+", isAdmin=" + validateAdmin()+", isauthenticated=" + validateLoggedIn()+ "\n");
@@ -70,6 +72,7 @@ public class LoginForm extends AbstractMaintenanceForm<String, AppUser> {
 	}
 
 	public String getUserName() {
+		System.out.println("Returning username as " + userName);
 		return userName;
 	}
 
@@ -85,9 +88,54 @@ public class LoginForm extends AbstractMaintenanceForm<String, AppUser> {
 		this.password = password;
 	}
 
+	
+	
 	public String login() throws ServletException, IOException {
 		try {
 
+			System.out.println("Logging in....");
+			
+			AppUser user = new AppUser();
+			user.setLogin(getUserName());
+			user.setPassword(getPassword());
+			user.addRole(Role.USER.value());
+			user.addRole(Role.ADMIN.value());
+			getUserSvc().update(user);
+			System.out.println(getUserSvc().getById(userName));
+
+			WebApplicationContext ac = WebApplicationContextUtils
+					.getWebApplicationContext((ServletContext) FacesContext.getCurrentInstance().getExternalContext().getContext());
+			AuthenticationManager authenticationManager = ac.getBean(AuthenticationManager.class);
+			Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(getUserName(), getPassword()));
+			SecurityContextHolder.getContext().setAuthentication(authentication);
+
+			setLoggedUser(authentication.getName());
+			setLoggedRole(validateAdmin() ? Role.ADMIN.display() : Role.USER.display());
+			
+			getSessionModel().reset();
+
+		} catch (Exception ex) {
+			// log.equals(ex.getMessage());
+			// ConfigUtil.addMessage("Login Failed: " + ex.getMessage());
+			ex.printStackTrace();
+			String message = ex.getLocalizedMessage();
+			if (message == null) {
+				message = "Incorrect user name or password";
+			}
+			FacesContext.getCurrentInstance().addMessage("growl", new FacesMessage("Error", "Login Failed: " + message));
+			return null;
+		}
+
+		return ConfigUtil.getSavedUrl() + "?faces-redirect=true";
+	}
+
+	
+	/*
+	public String login() throws ServletException, IOException {
+		try {
+
+			System.out.println("Logging in....");
+			
 			AppUser user = new AppUser();
 			user.setLogin("admin");
 			user.setPassword("password");
@@ -120,8 +168,12 @@ public class LoginForm extends AbstractMaintenanceForm<String, AppUser> {
 		}
 
 		return ConfigUtil.getSavedUrl() + "?faces-redirect=true";
-	}
+	}*/
 
+
+
+	
+	
 	public String logout() {
 		System.out.println("Logging out...");
 		getSessionModel().reset();

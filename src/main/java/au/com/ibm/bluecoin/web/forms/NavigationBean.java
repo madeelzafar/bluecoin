@@ -32,12 +32,17 @@ public class NavigationBean {
 	}
 				
 	public void home() {
-		getSessionModel().addPage(new PageDetails("home.xhtml", null, null));
-		getSessionModel().setContent("home.xhtml");	
+		getSessionModel().addPage(new PageDetails("/home.xhtml", null, null));
+		getSessionModel().setContent("/home.xhtml");	
 	}
 		
 	public void login() {
 		getSessionModel().setContent("login.xhtml");
+	}
+	
+	public void appuserlist() {
+		LOGGER.info("Getting UserList coins");
+		getSessionModel().setContent("/ui/appuser/appuserList.xhtml");
 	}
 
 	public void send() {
@@ -45,6 +50,8 @@ public class NavigationBean {
 		getSessionModel().setContent("/ui/send.xhtml");
 	}
 
+	
+	
 	public SessionModel getSessionModel() {
 		return sessionModel;
 	}

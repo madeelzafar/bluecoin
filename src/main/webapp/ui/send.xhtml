@@ -30,7 +30,10 @@
 									
 									<p:row>
 										<p:column style="width:150px"><h:outputText>Recipient:</h:outputText></p:column>
-										<p:column><p:inputText value="#{sendCoinsBean.recipient}"/></p:column>
+										
+										<p:column><p:autoComplete id="recipient" value="#{sendCoinsBean.recipient}" completeMethod="#{sendCoinsBean.completeText}" /></p:column>
+										<!-- <p:column><p:inputText value="#{sendCoinsBean.recipient}"></p:column>
+										  -->
 										<p:column/>
 									</p:row>
 

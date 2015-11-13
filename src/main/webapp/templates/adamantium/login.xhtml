@@ -12,11 +12,13 @@
             <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
             <meta name="apple-mobile-web-app-capable" content="yes" />
         </f:facet>
-        <title>PrimeFaces Adamantium</title>
+        <title>Blue Coins</title>
         <ui:insert name="head" />
     </h:head>
 
     <h:body>
+        
+          <h:form id="form">
         
         <div class="Container100 BordBottom BlueBack loginback">
             <div class="EmptyBox50"></div>
@@ -26,34 +28,31 @@
                     <div class="Card TexAlCenter" style="margin-bottom:-650px;">
                         <h:graphicImage name="images/logo.svg" library="adamantium-layout" style="max-width:180px;"/>
                         <div class="SeparatorFull"></div>
-                        <div class="Wid100 OvHidden BigTopic"><i class="icon-security DispBlock"></i> Login / Sign Up</div>
+                        <div class="Wid100 OvHidden BigTopic"><i class="icon-security DispBlock"></i> Login</div>
                         <div class="EmptyBox20"></div>
                         <div class="Card SoftGrayBack">
-                            <p:inputText placeholder="Email" styleClass="Wid90 TexAlCenter"/>
+                            <p:inputText placeholder="Username" styleClass="Wid90 TexAlCenter" value="#{loginForm.userName}"/>
                             <div class="EmptyBox10"></div>
-                            <p:inputText type="password" placeholder="Password" styleClass="Wid90 TexAlCenter"/>
+                            <p:inputText type="password" placeholder="Password" styleClass="Wid90 TexAlCenter" value="#{loginForm.password}"/>
                             <div class="EmptyBox30"></div>
-                            <p:selectBooleanCheckbox value="accept" itemLabel="I Accept Terms And Policies"/>
-                            <div class="EmptyBox30"></div>
-                            <p:button value="Sign In" icon="fa fa-sign-in" href="dashboard.xhtml" styleClass="CyanButton"/>
+                                                       
+                            <p:commandButton value="Sign In" icon="fa fa-lock" styleClass="CyanButton"  action="#{loginForm.login}"/>
+                            
                             <div class="EmptyBox10 ShowOnMobile"></div>
                             <p:button value="Forgot Password ?" icon="fa fa-lock" styleClass="RedButton"/>
                         </div>
                         <div class="EmptyBox20"></div>
                         <div class="Separator"></div>
-                        <div class="Wid100 OvHidden BigTopic">Access Permission</div>
-                        <div class="EmptyBox20"></div>
-                        <div class="Card SoftGrayBack">
-                            <div class="Wid100"><p:inputText placeholder="Email" styleClass="Wid90 TexAlCenter"/></div>
-                            <div class="EmptyBox10"></div>
-                            <p:button value="Send Access Request" styleClass="OrangeButton"/>
-                        </div>
+                       
                     </div>
                 </div>
             </div>
             
             <div class="EmptyBox10"></div>
         </div>
+      
+      
+      	    </h:form>
         
         <h:outputStylesheet name="css/core-layout.css" library="adamantium-layout" />
         <h:outputStylesheet name="css/animate.css" library="adamantium-layout" />

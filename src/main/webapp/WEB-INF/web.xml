@@ -59,7 +59,7 @@
 	</filter-mapping>
 
 	<welcome-file-list>
-		<welcome-file>templates/adamantium/index.xhtml</welcome-file>
+		<welcome-file>templates/adamantium/login.xhtml</welcome-file>
 	</welcome-file-list>
 
 	<mime-mapping>
