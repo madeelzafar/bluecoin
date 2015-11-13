@@ -74,7 +74,7 @@ public class SendCoinsBean {
 	{
 		
 		Sms message = null;
-		String messageBody = "Hi " + getRecipient() + "!! You have r76ygjgjhecieved " + getAmount() + " coins.. http://bluecoin-poc.mybluemix.net";
+		String messageBody = "Hi " + getRecipient() + "!! You have received " + getAmount() + " coins.. http://bluecoin-poc.mybluemix.net";
 		LOGGER.info("Sending " + messageBody );
 
 		TwilioRestClient client = new TwilioRestClient(accountSID, authToken);
