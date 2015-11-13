@@ -14,12 +14,12 @@
 
     <h:form id="form">
     
-	    <div class="Container50 Responsive100">    	
+	    <div class="Container60 Responsive100">    	
 	    	<div class="ContainerIndent">
 	    		<div class="Card">
-	                <div class="CardTopic"> <i class="fa fa-arrow-circle-o-up Fs40 Fleft MarRight10"/>
+	                <div class="CardTopic"> 
 	                    <div class="EmptyBox10 ShowOnMobile"/>
-	                    Welcome ${loginForm.userName}<br/>
+	                    Welcome ${loginForm.userName}! <i class="fa fa-smile-o Fs40 Fleft MarRight10"/><br/>
 	                    <span class="CardSubTopic">Bluecoins you can send.</span> 
 	                </div>
 	                <div class="Separator"/>
@@ -33,19 +33,19 @@
 				    	  			<p:panelGrid styleClass="Wid100 noBorderGrid SoftGrayBack" style="border: none !important;">
 									
 										<p:row>
-									   		<p:column><div class="EmptyBox10 ShowOnMobile"></div><p:button value="Cash Award" icon="fa fa-money" styleClass="Fs30 FontAdamantiumBold GreenButton" style="width:500px;height:80px"/></p:column>
+									   		<p:column><div class="EmptyBox20 ShowOnMobile"></div><p:button value="Cash Award" icon="fa fa-money" styleClass="Fs20 FontAdamantiumBold GreenButton" style="width :100%;height:50px"/></p:column>
                             			</p:row>
                             			<p:row>
-				    	    				<p:column><div class="EmptyBox30 ShowOnMobile"></div><p:button value="Team Award" icon="fa fa-group" styleClass="Fs30 FontAdamantiumBold YellowButton" style="width:500px;height:80px" /></p:column>
+				    	    				<p:column><div class="EmptyBox20 ShowOnMobile"></div><p:button value="Team Award" icon="fa fa-group" styleClass="Fs20 FontAdamantiumBold YellowButton" style="width:100%;height:50px" /></p:column>
 				    	  				</p:row>
                             			<p:row>
-				    	   					<p:column><div class="EmptyBox10 ShowOnMobile"></div><p:button value="One Team" icon="fa fa-gift" styleClass="Fs30 FontAdamantiumBold  RedButton" style="width:500px;height:80px"/></p:column>
+				    	   					<p:column><div class="EmptyBox20 ShowOnMobile"></div><p:button value="One Team" icon="fa fa-gift" styleClass="Fs20 FontAdamantiumBold  RedButton" style="width:100%;height:50px"/></p:column>
 				    	  				</p:row>
 				    	  				
 				    	  				<p:row>
 				    	
-				    	   					<p:column>	<div class="EmptyBox10 ShowOnMobile"></div>
-                        						<p:commandButton value="Blue Coins" icon="fa fa-lock" styleClass="Fs30 FontAdamantiumBold BlueButton" style="width:500px;height:80px" ajax="true" action="#{navigationBean.dashboard}" process="@form" update="mainContent, form"/>
+				    	   					<p:column>	<div class="EmptyBox20 ShowOnMobile"></div>
+                        						<p:commandButton value="Blue Coins" icon="fa fa-lock" styleClass="Fs20 FontAdamantiumBold BlueButton" style="width:100%;height:50px" ajax="true" action="#{navigationBean.dashboard}" process="@form" update="mainContent, form"/>
 											</p:column>
 				    	  			</p:row>
                             
