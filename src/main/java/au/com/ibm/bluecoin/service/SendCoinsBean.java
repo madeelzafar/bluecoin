@@ -2,10 +2,12 @@ package au.com.ibm.bluecoin.service;
 
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 
@@ -14,6 +16,8 @@ import org.slf4j.LoggerFactory;
 
 import au.com.ibm.bluecoin.dao.relational.UserDao;
 import au.com.ibm.bluecoin.model.relational.AppUser;
+import au.com.ibm.bluecoin.model.relational.Team;
+import au.com.ibm.bluecoin.model.relational.UserReward;
 import au.com.ibm.bluecoin.utils.PageDetails;
 
 import com.twilio.sdk.TwilioRestClient;
@@ -37,16 +41,53 @@ public class SendCoinsBean {
 	
 	private String amount="";
 	private String recipient="";
+	private String message="";
+	
 	
 	private String accountSID = "";
 	private String authToken = "";
 	
-	UserDao userDAO=null;
+	
+	
+	@EJB
+	private IUserRewardSvc userRewardSvc;
+
+	public IUserRewardSvc getUserRewardSvc() {
+		return userRewardSvc;
+	}
+
+	public void setUserSvc(IUserRewardSvc userRewardSvc) {
+		this.userRewardSvc = userRewardSvc;
+	}
+	
+	
+	@EJB(name="UserSvcLocal")
+	private IUserSvc userSvc;
+	public IUserSvc getUserSvc() {
+		return userSvc;
+	}
+
+	public void setUserSvc(IUserSvc userSvc) {
+		this.userSvc = userSvc;
+	}
+	
+	
+	@EJB
+	private ITeamSvc teamSvc;
+
+	public ITeamSvc getTeamSvc() {
+		return teamSvc;
+	}
+
+	public void setUserSvc(ITeamSvc teamSvc) {
+		this.teamSvc = teamSvc;
+	}
+	
+	
 	
 	
 	public SendCoinsBean()
 	{
-		userDAO = new UserDao();
 		accountSID = "ACe30184e7eca62c8fa22ad111e8efa458";
 		authToken = "4926655f54d8fd5d14d6dd6e5e967c04";
 	}
@@ -59,11 +100,13 @@ public class SendCoinsBean {
 	 }*/
 	 
 	 public List<String> completeText(String query) {
-	        List<String> results = new ArrayList<String>();
-	        for(int i = 0; i < 10; i++) {
-	            results.add(query + i);
+		 
+		 List<AppUser> list = getUserSvc().getDao().findByLoginLike(query);
+	     List<String> results = new ArrayList<String>();
+	        for(int i = 0; i < list.size(); i++) {
+	            AppUser user = list.get(i);
+	        	results.add(user.getLogin());
 	        }
-	         
 	        return results;
 	    }
 	     
@@ -73,7 +116,7 @@ public class SendCoinsBean {
 	public void sendCoins()
 	{
 		
-		Sms message = null;
+		Sms sms = null;
 		String messageBody = "Hi " + getRecipient() + "!! You have received " + getAmount() + " coins.. http://bluecoin-poc.mybluemix.net";
 		LOGGER.info("Sending " + messageBody );
 
@@ -89,13 +132,28 @@ public class SendCoinsBean {
 
 		SmsFactory messageFactory = client.getAccount().getSmsFactory();
 		try {
-				message = messageFactory.create(params);
-				}
-				catch (Exception e) {
-					e.printStackTrace();
-					LOGGER.error(e.getMessage());
-				}
-				LOGGER.info("Sent messageffdffs id: " + message.getSid());
+			
+			sms = messageFactory.create(params);
+			
+			AppUser user = getUserSvc().getById(getRecipient());
+			Team team = getTeamSvc().getById("EnergyAustralia");
+			user.setTeam(team);
+		
+			
+			UserReward reward = new UserReward();
+			reward.setRewardDate(new Date());
+			reward.setAppUser(user);
+			reward.setRewardAmount(Integer.parseInt(getAmount()));
+			reward.setRewardMessage(getMessage());
+			reward.setTeam(team);
+			getUserRewardSvc().create(reward);
+		
+		}
+		catch (Exception e) {
+				e.printStackTrace();
+				LOGGER.error(e.getMessage());
+		}
+		LOGGER.info("Sent message id: " + sms.getSid());
 				
 		
 	}
@@ -130,5 +188,19 @@ public class SendCoinsBean {
 	 */
 	public void setAmount(String amount) {
 		this.amount = amount;
+	}
+
+	/**
+	 * @return the message
+	 */
+	public String getMessage() {
+		return message;
+	}
+
+	/**
+	 * @param message the message to set
+	 */
+	public void setMessage(String message) {
+		this.message = message;
 	}
 }

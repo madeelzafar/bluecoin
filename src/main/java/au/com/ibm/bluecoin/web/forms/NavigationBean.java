@@ -50,6 +50,10 @@ public class NavigationBean {
 		getSessionModel().setContent("/ui/send.xhtml");
 	}
 
+	public void createTeam() {
+		LOGGER.info("Send coins");
+		getSessionModel().setContent("/ui/createTeam.xhtml");
+	}
 	
 	
 	public SessionModel getSessionModel() {

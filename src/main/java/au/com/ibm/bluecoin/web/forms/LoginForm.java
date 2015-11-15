@@ -25,8 +25,10 @@ import org.springframework.web.context.support.WebApplicationContextUtils;
 
 import au.com.ibm.bluecoin.config.ConfigUtil;
 import au.com.ibm.bluecoin.model.relational.AppUser;
+import au.com.ibm.bluecoin.model.relational.Team;
 import au.com.ibm.bluecoin.scaffold.AbstractMaintenanceForm;
 import au.com.ibm.bluecoin.scaffold.IService;
+import au.com.ibm.bluecoin.service.ITeamSvc;
 import au.com.ibm.bluecoin.service.IUserSvc;
 import au.com.ibm.bluecoin.utils.Role;
 import au.com.ibm.bluecoin.utils.ValidationUtils;
@@ -51,6 +53,20 @@ public class LoginForm extends AbstractMaintenanceForm<String, AppUser> {
 	public void setUserSvc(IUserSvc userSvc) {
 		this.userSvc = userSvc;
 	}
+	
+	
+	@EJB
+	private ITeamSvc teamSvc;
+
+	public ITeamSvc getTeamSvc() {
+		return teamSvc;
+	}
+
+	public void setUserSvc(ITeamSvc teamSvc) {
+		this.teamSvc = teamSvc;
+	}
+	
+	
 
 	/*@PostConstruct
 	public void init() {
@@ -100,6 +116,10 @@ public class LoginForm extends AbstractMaintenanceForm<String, AppUser> {
 			user.setPassword(getPassword());
 			user.addRole(Role.USER.value());
 			user.addRole(Role.ADMIN.value());
+			
+			Team team = getTeamSvc().getById("EnergyAustralia");
+			user.setTeam(team);
+			
 			getUserSvc().update(user);
 			System.out.println(getUserSvc().getById(userName));
 

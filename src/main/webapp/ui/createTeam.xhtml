@@ -1,0 +1,53 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui">
+
+    <ui:define name="head">
+
+    </ui:define>
+    
+    <ui:define name="subheader">
+        Create Team
+    </ui:define>
+
+    <h:form id="form">
+    
+	    <div class="Container100 Responsive100">    
+	    	<div class="ContainerIndent">
+	    		<div class="Card">
+	                <div class="CardTopic"> <i class="fa fa-arrow-circle-o-down Fs30 Fleft MarRight10"/>
+	                    <div class="EmptyBox10 ShowOnMobile"/>
+	                    Create Team<br/>
+	                </div>
+	                <div class="Separator"/>
+	                
+	                <div class="Container100 Responsive100">
+				    	<div class="ContainerIndent">
+				    		<div class="Card">
+				    			<p:panelGrid styleClass="noBorderGrid" style="border: none !important; padding: 4px">
+									
+									<p:row>
+										<p:column><h:outputText>Name:</h:outputText></p:column>
+										<p:column><p:inputText value="#{teamForm.name}"/></p:column>
+									</p:row>
+
+							
+				    			</p:panelGrid>
+								
+								<p:commandButton value="Create" icon="fa fa-plus" styleClass="OrangeButton"  action="#{teamForm.createTeam}" update="mainContent,form"/>
+								
+								
+		
+				    		</div>
+				    	</div>
+	                </div>
+
+	    		</div>
+	    	</div>
+	    </div>
+	        
+    </h:form>
+
+</ui:composition>
