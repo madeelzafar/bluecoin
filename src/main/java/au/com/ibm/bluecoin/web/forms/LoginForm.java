@@ -29,7 +29,9 @@ import au.com.ibm.bluecoin.model.relational.Team;
 import au.com.ibm.bluecoin.scaffold.AbstractMaintenanceForm;
 import au.com.ibm.bluecoin.scaffold.IService;
 import au.com.ibm.bluecoin.service.ITeamSvc;
+import au.com.ibm.bluecoin.service.IUserRewardSvc;
 import au.com.ibm.bluecoin.service.IUserSvc;
+import au.com.ibm.bluecoin.service.RewardBean;
 import au.com.ibm.bluecoin.utils.Role;
 import au.com.ibm.bluecoin.utils.ValidationUtils;
 
@@ -66,6 +68,16 @@ public class LoginForm extends AbstractMaintenanceForm<String, AppUser> {
 		this.teamSvc = teamSvc;
 	}
 	
+	@EJB
+	private IUserRewardSvc userRewardSvc;
+
+	public IUserRewardSvc getUserRewardSvc() {
+		return userRewardSvc;
+	}
+
+	public void setUserSvc(IUserRewardSvc userRewardSvc) {
+		this.userRewardSvc = userRewardSvc;
+	}
 	
 
 	/*@PostConstruct
@@ -132,7 +144,24 @@ public class LoginForm extends AbstractMaintenanceForm<String, AppUser> {
 			setLoggedUser(authentication.getName());
 			setLoggedRole(validateAdmin() ? Role.ADMIN.display() : Role.USER.display());
 			
-			getSessionModel().reset();
+			
+			
+			
+			if (userRewardSvc.getDao().getUnReadRewardsByUser(getUserName()).size()>0)
+			{
+				getSessionModel().setContent("/ui/viewTrophy.xhtml");
+			}
+			else
+			{
+				getSessionModel().reset();
+					
+			}
+			
+			
+			
+			
+			
+			
 
 		} catch (Exception ex) {
 			// log.equals(ex.getMessage());

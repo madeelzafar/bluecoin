@@ -55,6 +55,11 @@ public class NavigationBean {
 		getSessionModel().setContent("/ui/createTeam.xhtml");
 	}
 	
+	public void viewTrophy() {
+		LOGGER.info("View trophy");
+		getSessionModel().setContent("/ui/viewTrophy.xhtml");
+	}
+	
 	
 	public SessionModel getSessionModel() {
 		return sessionModel;

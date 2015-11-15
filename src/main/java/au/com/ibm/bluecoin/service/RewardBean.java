@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 
@@ -39,6 +40,18 @@ public class RewardBean {
 	
 	List<UserReward> rewardList = null;
 	
+	@EJB
+	private IUserRewardSvc userRewardSvc;
+
+	public IUserRewardSvc getUserRewardSvc() {
+		return userRewardSvc;
+	}
+
+	public void setUserSvc(IUserRewardSvc userRewardSvc) {
+		this.userRewardSvc = userRewardSvc;
+	}
+	
+	
 	
 	public RewardBean()
 	{
@@ -60,10 +73,27 @@ public class RewardBean {
 	}
 
 	
-	public List<UserReward> getUserRewardsByTeam() {
+	public List<UserReward> getUserRewards() {
         return rewardList;
 	}
-
 	
+	
+	public List<UserReward> getUserUnReadRewards(String username){
+		
+		if (getUserRewardSvc() == null)
+		{
+			System.out.println("getUserRewardSvc is null");
+		}
+		else if (getUserRewardSvc().getDao() == null)
+		{
+			System.out.println("getUserRewardSvc getDao is null");
+		}
+		else
+		{
+			System.out.println("Null somehwere in getUnReadRewardsByUser");
+		}
+		
+		return getUserRewardSvc().getDao().getUnReadRewardsByUser(username);
+	}	
 
 }
