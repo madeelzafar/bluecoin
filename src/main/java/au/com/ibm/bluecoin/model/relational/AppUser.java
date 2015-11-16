@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.Version;
 
 import au.com.ibm.bluecoin.scaffold.AbstractMasterEntity;
@@ -31,6 +32,7 @@ public class AppUser extends AbstractMasterEntity<String> {
 	
 	String email;
 	
+	@OneToOne
 	private Team team;
 	
 

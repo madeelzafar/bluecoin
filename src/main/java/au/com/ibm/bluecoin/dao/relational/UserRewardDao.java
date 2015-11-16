@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
+import javax.persistence.Query;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
@@ -15,6 +16,7 @@ import au.com.ibm.bluecoin.dao.Dao;
 import au.com.ibm.bluecoin.dao.IUserRewardDao;
 import au.com.ibm.bluecoin.dao.relational.repository.UserRewardRepository;
 import au.com.ibm.bluecoin.model.relational.AppUser;
+import au.com.ibm.bluecoin.model.relational.TeamLadderSummaryItem;
 import au.com.ibm.bluecoin.model.relational.UserReward;
 
 
@@ -32,23 +34,25 @@ public class UserRewardDao extends AbstractDao<UserReward, String, UserRewardRep
 	public List<UserReward> getRewardsByUser(String username) {
 		CriteriaBuilder c = getEntityManager().getCriteriaBuilder();
 		CriteriaQuery<UserReward> criteria = c.createQuery(UserReward.class);
+		Root<UserReward> usr = criteria.from(UserReward.class);
+		//List<Predicate> predicates = new ArrayList<Predicate>();
+		criteria.select(usr);
+		
 		
 		/*
-		Root<UserReward> usr = criteria.from(UserReward.class);
-		List<Predicate> predicates = new ArrayList<Predicate>();
-		criteria.select(usr);
 		if (username != null && !username.isEmpty()) {
 			Predicate predicate = c.equal(c.upper(usr.get(AppUser_"login")), username.toUpperCase());
 			predicates.add(predicate);
 		}
-		criteria.where(c.or(predicates.toArray(new Predicate[0])));
 		*/
+		//criteria.where(c.or(predicates.toArray(new Predicate[0])));
+		
 		List<UserReward> resultList = getEntityManager().createQuery(criteria).getResultList();
 		List<UserReward> result = new ArrayList<UserReward>();
 		for (int i=0; i< resultList.size(); i++){
 			
 			UserReward u = resultList.get(i);
-			if (u.getAppUser().getLogin().toUpperCase().equals(username.toUpperCase()))
+			if (u.getRecepient().getLogin().toUpperCase().equals(username.toUpperCase()))
 			{
 				result.add(u);
 			}
@@ -79,12 +83,38 @@ public class UserRewardDao extends AbstractDao<UserReward, String, UserRewardRep
 		for (int i=0; i< resultList.size(); i++){
 			
 			UserReward u = resultList.get(i);
-			if (u.getAppUser().getLogin().toUpperCase().equals(username.toUpperCase()))
+			if (u.getRecepient().getLogin().toUpperCase().equals(username.toUpperCase()))
 			{
 				result.add(u);
 			}
 		}
 		return result;
+	}
+	
+	
+	public List<TeamLadderSummaryItem> getTeamLadder() {
+		
+		System.out.println("getTeamLadder");
+		
+		 List<TeamLadderSummaryItem> teamLadder = new  ArrayList<TeamLadderSummaryItem>();
+		
+		Query q = getEntityManager().createQuery("select team_name, sum(rewardamount) as total by team_name order by total"); 
+		List<Object[]> resultList = q.getResultList();
+
+		int rank=1;
+		for (Object[] result : resultList)
+		{
+			
+				TeamLadderSummaryItem item = new TeamLadderSummaryItem();
+				item.setRank(rank);
+				item.setTotalAmount((Integer)result[1]);
+				item.setTeam((String)result[0]);
+				teamLadder.add(item);
+				rank++;
+		}
+
+
+		return teamLadder;
 	}
 
 

@@ -147,7 +147,7 @@ public class LoginForm extends AbstractMaintenanceForm<String, AppUser> {
 			
 			
 			
-			if (userRewardSvc.getDao().getUnReadRewardsByUser(getUserName()).size()>0)
+			if (userRewardSvc.getDao().getRewardsByUser(getUserName()).size()>0)
 			{
 				getSessionModel().setContent("/ui/viewTrophy.xhtml");
 			}

@@ -41,8 +41,8 @@ public class NavigationBean {
 	}
 	
 	public void appuserlist() {
-		LOGGER.info("Getting UserList coins");
-		getSessionModel().setContent("/ui/appuser/appuserList.xhtml");
+		LOGGER.info("Getting UserList");
+		getSessionModel().setContent("/ui/appuser/appuser.xhtml");
 	}
 
 	public void send() {
@@ -55,9 +55,20 @@ public class NavigationBean {
 		getSessionModel().setContent("/ui/createTeam.xhtml");
 	}
 	
+	public void viewRewards() {
+		LOGGER.info("View Rewards");
+		getSessionModel().setContent("/ui/rewardList.xhtml");
+	}
+	
+	
 	public void viewTrophy() {
 		LOGGER.info("View trophy");
 		getSessionModel().setContent("/ui/viewTrophy.xhtml");
+	}
+	
+	public void viewTeamLadder() {
+		LOGGER.info("View team ladder");
+		getSessionModel().setContent("/ui/teamLadder.xhtml");
 	}
 	
 	

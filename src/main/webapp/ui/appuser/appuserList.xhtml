@@ -25,12 +25,12 @@
 								value="#{appUserForm.searchBygenericSearchString}"
 								placeholder="Any" />
 							<p:commandButton action="#{appUserForm.searchByIDOrName}"
-								alt="Search" ajax="true" update="mainContent, form, growl"
+								alt="Search" ajax="true" update="mainContent, form"
 								process="@form" icon="fa fa-search"
 								styleClass="RaisedButton White" style="margin-left: 5px!important;margin-bottom: 5px!important;"/>
 							<p:commandButton icon="fa fa-undo" process="@form"
 								action="#{appUserForm.resetSearch}"
-								update="mainContent, form, growl"
+								update="mainContent, form"
 								styleClass="GrayButton Red RaisedButton" style="margin-left: 5px!important;margin-bottom: 5px!important;"/>
 							<br /> <br /> <br />
 						</div>
@@ -61,7 +61,7 @@
 						</p:column>
 						<p:column headerText="Actions" priority="1">
 							<p:commandButton action="#{appUserForm.viewOne(usr)}"
-								ajax="true" update="mainContent, form, growl" process="@this"
+								ajax="true" update="mainContent, form" process="@this"
 								icon="fa fa-arrow-right" styleClass="RaisedButton White" 
 								disabled="#{appUserForm.isDisbaledToModify(usr.login)}"/>
 							<p:commandButton action="#{appUserForm.remove(usr)}"
@@ -72,7 +72,7 @@
 					</p:dataTable>
 					<br/>
 					<p:commandButton action="#{appUserForm.viewNewOne()}"
-								ajax="true" update="mainContent, form, growl" process="@this"
+								ajax="true" update="mainContent, form" process="@this"
 								icon="fa fa-user-plus" styleClass="RaisedButton White" />
 				</div>
 			</div>

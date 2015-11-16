@@ -19,6 +19,7 @@ import au.com.ibm.bluecoin.model.relational.AppUser;
 import au.com.ibm.bluecoin.model.relational.Team;
 import au.com.ibm.bluecoin.model.relational.UserReward;
 import au.com.ibm.bluecoin.utils.PageDetails;
+import au.com.ibm.bluecoin.web.forms.LoginForm;
 
 import com.twilio.sdk.TwilioRestClient;
 import com.twilio.sdk.TwilioRestException;
@@ -51,6 +52,9 @@ public class SendCoinsBean {
 	
 	@EJB
 	private IUserRewardSvc userRewardSvc;
+	
+	@EJB
+	private LoginForm loginForm;
 
 	public IUserRewardSvc getUserRewardSvc() {
 		return userRewardSvc;
@@ -136,13 +140,18 @@ public class SendCoinsBean {
 			sms = messageFactory.create(params);
 			
 			AppUser user = getUserSvc().getById(getRecipient());
+			AppUser sender = getUserSvc().getById(loginForm.getUserName()); 
+					
+					
 			Team team = getTeamSvc().getById("EnergyAustralia");
 			user.setTeam(team);
 		
 			
 			UserReward reward = new UserReward();
 			reward.setRewardDate(new Date());
-			reward.setAppUser(user);
+			reward.setRecepient(user);
+			reward.setSender(sender);
+			
 			reward.setRewardAmount(Integer.parseInt(getAmount()));
 			reward.setRewardMessage(getMessage());
 			reward.setTeam(team);

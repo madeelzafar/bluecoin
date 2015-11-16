@@ -29,6 +29,9 @@ public class AppUserForm extends AbstractMaintenanceForm<String, AppUser> {
 	private IUserSvc userSvc;
 
 	private String password;
+	
+	private String searchBygenericSearchString;
+	
 
 	@PostConstruct
 	public void init() {
@@ -49,6 +52,8 @@ public class AppUserForm extends AbstractMaintenanceForm<String, AppUser> {
 	public String getEntityBusinessName() {
 		return "App User";
 	}
+	
+	
 
 	public String getPassword() {
 		return password;
@@ -105,6 +110,28 @@ public class AppUserForm extends AbstractMaintenanceForm<String, AppUser> {
 
 	public void resetPwd() {
 		getSessionModel().getModel().setPassword(AppUser.DEFAULT_PASSWORD);
+	}
+
+
+	/**
+	 * @return the searchBygenericSearchString
+	 */
+	public String getSearchBygenericSearchString() {
+		return searchBygenericSearchString;
+	}
+
+
+	/**
+	 * @param searchBygenericSearchString the searchBygenericSearchString to set
+	 */
+	public void setSearchBygenericSearchString(String searchBygenericSearchString) {
+		this.searchBygenericSearchString = searchBygenericSearchString;
+	}
+	
+	
+	public List<AppUser> searchByIDOrName(String name)
+	{
+		return userSvc.getDao().findByLoginLike(name);
 	}
 
 }

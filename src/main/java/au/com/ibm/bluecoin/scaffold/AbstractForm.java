@@ -17,6 +17,8 @@ public class AbstractForm<T extends IMasterPersistentEntity> implements Serializ
      */
     @ManagedProperty("#{sessionModel}")
     private SessionModel<T> sessionModel;
+    
+    //priVATE TROPHY
  
     public SessionModel<T> getSessionModel() {
 		return sessionModel;

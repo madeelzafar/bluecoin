@@ -11,12 +11,13 @@ import au.com.ibm.bluecoin.scaffold.AbstractMasterEntity;
 @Entity
 public class UserReward extends AbstractMasterEntity<String> {
 
-	private AppUser appUser =null;
+	private AppUser recepient = new AppUser();
 	//Team team = null;
 	private int rewardAmount;
 	private String rewardMessage;
 	boolean read=false;
 	private Team team = null;
+	private AppUser sender = new AppUser();
 	
 	
 	@Id
@@ -88,19 +89,7 @@ public class UserReward extends AbstractMasterEntity<String> {
 		this.rewardAmount = rewardAmount;
 	}
 
-	/**
-	 * @return the appUser
-	 */
-	public AppUser getAppUser() {
-		return appUser;
-	}
-
-	/**
-	 * @param appUser the appUser to set
-	 */
-	public void setAppUser(AppUser appUser) {
-		this.appUser = appUser;
-	}
+	
 
 	/**
 	 * @return the team
@@ -114,5 +103,33 @@ public class UserReward extends AbstractMasterEntity<String> {
 	 */
 	public void setTeam(Team team) {
 		this.team = team;
+	}
+
+	/**
+	 * @return the recepient
+	 */
+	public AppUser getRecepient() {
+		return recepient;
+	}
+
+	/**
+	 * @param recepient the recepient to set
+	 */
+	public void setRecepient(AppUser recepient) {
+		this.recepient = recepient;
+	}
+
+	/**
+	 * @return the sender
+	 */
+	public AppUser getSender() {
+		return sender;
+	}
+
+	/**
+	 * @param sender the sender to set
+	 */
+	public void setSender(AppUser sender) {
+		this.sender = sender;
 	}
 }

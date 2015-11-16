@@ -78,22 +78,6 @@ public class RewardBean {
 	}
 	
 	
-	public List<UserReward> getUserUnReadRewards(String username){
-		
-		if (getUserRewardSvc() == null)
-		{
-			System.out.println("getUserRewardSvc is null");
-		}
-		else if (getUserRewardSvc().getDao() == null)
-		{
-			System.out.println("getUserRewardSvc getDao is null");
-		}
-		else
-		{
-			System.out.println("Null somehwere in getUnReadRewardsByUser");
-		}
-		
-		return getUserRewardSvc().getDao().getUnReadRewardsByUser(username);
-	}	
+	
 
 }

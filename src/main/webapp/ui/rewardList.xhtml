@@ -1,0 +1,47 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+
+	<h:form id="form">
+		
+		<div class="Container100 Responsive100">
+			<div class="ContainerIndent">
+				<div class="Card ShadowEffect">
+						<h2 class="BigTopic">
+							<i class="fa fa-users MarRight10"></i> #{userRewardForm.viewOneTitle}
+						</h2>
+
+					<p:dataTable id="dtappUsers" var="usr"
+						value="#{userRewardForm.userRewards}"
+						style="font-size:small" reflow="true">
+
+						<!-- 
+						<p:column headerText="Recepient" priority="1">
+							<h:outputText value="#{usr.appUser.login}" />
+						</p:column> -->
+						
+						<p:column headerText="Amount" priority="1">
+							<h:outputText value="  #{usr.rewardAmount}" />
+						</p:column>
+						<p:column headerText="Message" priority="1">
+							<h:outputText value="#{usr.rewardMessage}" />
+						</p:column>
+				
+				
+						<p:column headerText="Date" priority="1">
+							<h:outputText value="#{usr.rewardDate}" />
+						</p:column>
+				
+						</p:dataTable>
+					<br/>
+				</div>
+			</div>
+		</div>
+
+	
+	</h:form>
+
+</ui:composition>

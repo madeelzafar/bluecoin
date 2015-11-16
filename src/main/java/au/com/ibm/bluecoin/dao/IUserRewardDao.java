@@ -12,6 +12,7 @@ import javax.persistence.criteria.Root;
 import org.springframework.data.repository.NoRepositoryBean;
 
 import au.com.ibm.bluecoin.dao.relational.repository.UserRewardRepository;
+import au.com.ibm.bluecoin.model.relational.TeamLadderSummaryItem;
 import au.com.ibm.bluecoin.model.relational.UserReward;
 import au.com.ibm.bluecoin.scaffold.IDao;
 
@@ -23,5 +24,7 @@ public interface IUserRewardDao extends IDao<UserReward, String, UserRewardRepos
 
 	public List<UserReward> getUnReadRewardsByUser(String username);
 	
+	
+	public List<TeamLadderSummaryItem> getTeamLadder();
 	
 }

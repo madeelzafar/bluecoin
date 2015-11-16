@@ -24,14 +24,14 @@
 	                <div class="Separator"/>
 	                
 	                <div class="Container100 Responsive100">
-				    	<div class="ContainerIndent">
+				    	
 				    		<div class="Card">
 				    			<p:panelGrid styleClass="noBorderGrid" style="border: none !important; padding: 4px">
 									
 									<p:row>
 										<p:column><h:outputText>Recipient:</h:outputText></p:column>
 										
-										<p:column><p:autoComplete id="recipient" value="#{sendCoinsBean.recipient}" completeMethod="#{sendCoinsBean.completeText}" /></p:column>
+										<p:column><p:autoComplete  id="recipient" value="#{sendCoinsBean.recipient}" completeMethod="#{sendCoinsBean.completeText}" /></p:column>
 										<!-- <p:column><p:inputText value="#{sendCoinsBean.recipient}"></p:column>
 										  -->
 									</p:row>
@@ -64,7 +64,7 @@
 								<p:commandButton value="Send" icon="fa fa-send" styleClass="OrangeButton RaisedButton"  action="#{sendCoinsBean.sendCoins}"/>
 								
 				    		</div>
-				    	</div>
+				    	
 	                </div>
 
 	    		</div>

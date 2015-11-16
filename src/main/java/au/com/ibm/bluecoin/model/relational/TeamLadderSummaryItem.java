@@ -11,7 +11,7 @@ public class TeamLadderSummaryItem {
 	
 	private int totalAmount;
 	
-	private Team team;
+	private String team;
 	
 
 	/**
@@ -45,14 +45,14 @@ public class TeamLadderSummaryItem {
 	/**
 	 * @return the team
 	 */
-	public Team getTeam() {
+	public String getTeam() {
 		return team;
 	}
 
 	/**
 	 * @param team the team to set
 	 */
-	public void setTeam(Team team) {
+	public void setTeam(String team) {
 		this.team = team;
 	}
 	
