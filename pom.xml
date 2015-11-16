@@ -369,6 +369,10 @@
 					<artifactId>arquillian-core-api</artifactId>
 					<groupId>org.jboss.arquillian.core</groupId>
 				</exclusion>
+				<exclusion>
+					<groupId>sun.jdk</groupId>
+					<artifactId>jconsole</artifactId>
+				</exclusion>
 			</exclusions>
 		</dependency>
 
