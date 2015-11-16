@@ -9,7 +9,6 @@ import javax.persistence.OneToMany;
 import au.com.ibm.bluecoin.scaffold.AbstractMasterEntity;
 
 @Entity
-
 public class Team extends AbstractMasterEntity<String> {
 
 	@Id
