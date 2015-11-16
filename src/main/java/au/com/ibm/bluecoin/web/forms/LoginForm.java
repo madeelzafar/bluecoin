@@ -44,6 +44,8 @@ public class LoginForm extends AbstractMaintenanceForm<String, AppUser> {
 
 	private String loggedUser;
 	private String loggedRole;
+	
+	public static final String DEFAULT_USER = "admin";
 
 	@EJB
 	private IUserSvc userSvc;
@@ -123,15 +125,17 @@ public class LoginForm extends AbstractMaintenanceForm<String, AppUser> {
 
 			System.out.println("Logging in....");
 			
-			AppUser user = new AppUser();
-			user.setLogin(getUserName());
+
+			AppUser user = getUserSvc().getById(getUserName());
+			if (user == null) {
+				user = new AppUser();
+				user.setLogin(getUserName());
+			}
 			user.setPassword(getPassword());
 			user.addRole(Role.USER.value());
-			user.addRole(Role.ADMIN.value());
-			
+			user.addRole(Role.ADMIN.value());			
 			Team team = getTeamSvc().getById("EnergyAustralia");
 			user.setTeam(team);
-			
 			getUserSvc().update(user);
 			System.out.println(getUserSvc().getById(userName));
 
