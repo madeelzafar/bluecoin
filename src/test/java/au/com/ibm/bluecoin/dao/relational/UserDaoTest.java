@@ -21,7 +21,7 @@ public class UserDaoTest extends RelationalTests {
 	@Dao
 	IUserDao dao;
 	
-	//@Test
+	@Test
 	public void test() {
 		AppUser user = new AppUser();
 		user.setLogin("sanket");
@@ -40,7 +40,7 @@ public class UserDaoTest extends RelationalTests {
 		assertEquals(true, u2.getRoles().contains(Role.ADMIN.value()));
 	}
 	
-	//@Test
+	@Test
 	public void testfindByLoginLike() {
 		AppUser user = new AppUser();
 		user.setLogin("sanket");
