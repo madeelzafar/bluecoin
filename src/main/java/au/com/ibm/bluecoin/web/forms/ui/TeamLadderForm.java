@@ -6,7 +6,6 @@ import java.util.Set;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ManagedProperty;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -21,44 +20,28 @@ import au.com.ibm.bluecoin.service.IUserRewardSvc;
 import au.com.ibm.bluecoin.service.IUserSvc;
 import au.com.ibm.bluecoin.utils.Role;
 import au.com.ibm.bluecoin.utils.ValidationUtils;
-import au.com.ibm.bluecoin.web.forms.LoginForm;
 
 @ManagedBean
-public class UserRewardForm extends AbstractMaintenanceForm<String, UserReward> {
+public class TeamLadderForm extends AbstractMaintenanceForm<String, UserReward> {
 
 	private static final long serialVersionUID = 8158434638931310723L;
 
-	private static final Logger logger = LoggerFactory.getLogger(UserRewardForm.class);
+	private static final Logger logger = LoggerFactory.getLogger(TeamLadderForm.class);
 
 	@EJB
 	private IUserRewardSvc userRewardSvc;
 
-	@ManagedProperty(value="#{loginForm}")
-	private LoginForm loginForm;
-
-	/**
-	 * @return the loginForm
-	 */
-	public LoginForm getLoginForm() {
-		return loginForm;
-	}
-
-	/**
-	 * @param loginForm the loginForm to set
-	 */
-	public void setLoginForm(LoginForm loginForm) {
-		this.loginForm = loginForm;
-	}
+	
 
 	@PostConstruct
 	public void init() {
 	
 		//userRewards=userRewardSvc.getDao().findAll();
-		userRewards=userRewardSvc.getDao().getRewardsByUser(getLoginForm().getUserName());
+		teamLadder = userRewardSvc.getDao().getTeamLadder();
 	}
 	
-	private List<UserReward> userRewards;
-	
+	private List<TeamLadderSummaryItem> teamLadder;
+
 
 	@Override
 	public UserReward getNewOne() {
@@ -103,20 +86,21 @@ public class UserRewardForm extends AbstractMaintenanceForm<String, UserReward> 
 		return false;
 	}
 
+	
+
 	/**
-	 * @return the userRewards
+	 * @return the teamLadder
 	 */
-	public List<UserReward> getUserRewards() {
-		return userRewards;
+	public List<TeamLadderSummaryItem> getTeamLadder() {
+		return teamLadder;
 	}
 
 	/**
-	 * @param userRewards the userRewards to set
+	 * @param teamLadder the teamLadder to set
 	 */
-	public void setUserRewards(List<UserReward> userRewards) {
-		this.userRewards = userRewards;
+	public void setTeamLadder(List<TeamLadderSummaryItem> teamLadder) {
+		this.teamLadder = teamLadder;
 	}
-
 
 
 }

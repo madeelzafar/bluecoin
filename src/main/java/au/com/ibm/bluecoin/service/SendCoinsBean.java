@@ -53,9 +53,6 @@ public class SendCoinsBean {
 	@EJB
 	private IUserRewardSvc userRewardSvc;
 	
-	@EJB
-	private LoginForm loginForm;
-
 	public IUserRewardSvc getUserRewardSvc() {
 		return userRewardSvc;
 	}
@@ -63,6 +60,25 @@ public class SendCoinsBean {
 	public void setUserSvc(IUserRewardSvc userRewardSvc) {
 		this.userRewardSvc = userRewardSvc;
 	}
+	
+	
+	@ManagedProperty(value="#{loginForm}")
+	private LoginForm loginForm;
+
+	/**
+	 * @return the loginForm
+	 */
+	public LoginForm getLoginForm() {
+		return loginForm;
+	}
+
+	/**
+	 * @param loginForm the loginForm to set
+	 */
+	public void setLoginForm(LoginForm loginForm) {
+		this.loginForm = loginForm;
+	}
+
 	
 	
 	@EJB(name="UserSvcLocal")
@@ -126,26 +142,18 @@ public class SendCoinsBean {
 
 		TwilioRestClient client = new TwilioRestClient(accountSID, authToken);
 
-		// Build a filter for the SmsList
-		Map<String, String> params = new HashMap<String, String>();
-				
-		// Update with your Twilio number 
-		params.put("From", "+61439767507");
-		params.put("Body", messageBody);
-		params.put("To", "+61430321919");
-
+	
+	
 		SmsFactory messageFactory = client.getAccount().getSmsFactory();
 		try {
 			
-			sms = messageFactory.create(params);
 			
 			AppUser user = getUserSvc().getById(getRecipient());
-			AppUser sender = getUserSvc().getById(loginForm.getUserName()); 
+			AppUser sender = getUserSvc().getById(getLoginForm().getUserName()); 
 					
 					
 			Team team = getTeamSvc().getById("EnergyAustralia");
 			user.setTeam(team);
-		
 			
 			UserReward reward = new UserReward();
 			reward.setRewardDate(new Date());
@@ -156,7 +164,18 @@ public class SendCoinsBean {
 			reward.setRewardMessage(getMessage());
 			reward.setTeam(team);
 			getUserRewardSvc().create(reward);
-		
+	
+			
+			// Build a filter for the SmsList
+			Map<String, String> params = new HashMap<String, String>();
+			// Update with your Twilio number 
+			params.put("From", "+61439767507");
+			params.put("Body", messageBody);
+			params.put("To", user.getMobile());
+			sms = messageFactory.create(params);
+			
+			
+			
 		}
 		catch (Exception e) {
 				e.printStackTrace();
@@ -164,6 +183,7 @@ public class SendCoinsBean {
 		}
 		LOGGER.info("Sent message id: " + sms.getSid());
 				
+		
 		
 	}
 

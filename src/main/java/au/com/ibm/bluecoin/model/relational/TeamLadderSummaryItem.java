@@ -9,7 +9,7 @@ public class TeamLadderSummaryItem {
 	
 	private int rank;
 	
-	private int totalAmount;
+	private long totalAmount;
 	
 	private String team;
 	
@@ -31,14 +31,14 @@ public class TeamLadderSummaryItem {
 	/**
 	 * @return the totalAmmount
 	 */
-	public int getTotalAmount() {
+	public long getTotalAmount() {
 		return totalAmount;
 	}
 
 	/**
 	 * @param totalAmmount the totalAmmount to set
 	 */
-	public void setTotalAmount(int totalAmount) {
+	public void setTotalAmount(long totalAmount) {
 		this.totalAmount = totalAmount;
 	}
 

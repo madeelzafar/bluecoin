@@ -5,18 +5,23 @@ import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 
 import au.com.ibm.bluecoin.scaffold.AbstractMasterEntity;
 
 @Entity
 public class UserReward extends AbstractMasterEntity<String> {
 
+	@OneToOne
 	private AppUser recepient = new AppUser();
-	//Team team = null;
 	private int rewardAmount;
 	private String rewardMessage;
 	boolean read=false;
+	
+	@OneToOne
 	private Team team = null;
+	
+	@OneToOne
 	private AppUser sender = new AppUser();
 	
 	

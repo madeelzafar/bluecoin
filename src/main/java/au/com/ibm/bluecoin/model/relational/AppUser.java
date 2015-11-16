@@ -32,6 +32,7 @@ public class AppUser extends AbstractMasterEntity<String> {
 	
 	String email;
 	
+	@OneToOne
 	private Team team;
 	
 
