@@ -98,20 +98,29 @@ public class UserRewardDao extends AbstractDao<UserReward, String, UserRewardRep
 		
 		 List<TeamLadderSummaryItem> teamLadder = new  ArrayList<TeamLadderSummaryItem>();
 		
-		Query q = getEntityManager().createQuery("select team_name, sum(rewardamount) as total by team_name order by total"); 
-		List<Object[]> resultList = q.getResultList();
-
-		int rank=1;
-		for (Object[] result : resultList)
-		{
+		 try{
+			//Query q = getEntityManager().createQuery("select ent.team.name, sum(ent.rewardAmount) as total from UserReward ent group by ent.team.name order by total"); 
+			Query q = getEntityManager().createQuery("select ent.recepient.login, sum(ent.rewardAmount) as total from UserReward ent group by ent.recepient.login order by total desc"); 
+				
+			 List<Object[]> resultList = q.getResultList();
+	
+			int rank=1;
+			for (Object[] result : resultList)
+			{
+				
+					TeamLadderSummaryItem item = new TeamLadderSummaryItem();
+					item.setRank(rank);
+					item.setTeam((String)result[0]);
+					item.setTotalAmount((long)result[1]);
+					teamLadder.add(item);
+					rank++;
+			}
+		 }
+		 catch(Exception ex)
+		 {
+			 ex.printStackTrace();
+		 }
 			
-				TeamLadderSummaryItem item = new TeamLadderSummaryItem();
-				item.setRank(rank);
-				item.setTotalAmount((Integer)result[1]);
-				item.setTeam((String)result[0]);
-				teamLadder.add(item);
-				rank++;
-		}
 
 
 		return teamLadder;
