@@ -24,7 +24,10 @@
 		<!-- 
 		<non-jta-data-source>bluecoin-db</non-jta-data-source>
 		-->
-		<exclude-unlisted-classes>false</exclude-unlisted-classes>
+		<class>au.com.ibm.bluecoin.model.relational.AppUser</class>
+		<class>au.com.ibm.bluecoin.model.relational.Team</class>
+		<class>au.com.ibm.bluecoin.model.relational.UserReward</class>
+		<!-- <exclude-unlisted-classes>false</exclude-unlisted-classes> -->
 		
 		<properties>
 			<property name="eclipselink.logging.parameters" value="true" />

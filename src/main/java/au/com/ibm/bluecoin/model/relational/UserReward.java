@@ -4,8 +4,12 @@ package au.com.ibm.bluecoin.model.relational;
 import java.util.Date;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import au.com.ibm.bluecoin.scaffold.AbstractMasterEntity;
 
@@ -18,6 +22,10 @@ public class UserReward extends AbstractMasterEntity<String> {
 	private String rewardMessage;
 	boolean read=false;
 	
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private String id;
+	
 	@OneToOne
 	private Team team = null;
 	
@@ -25,9 +33,8 @@ public class UserReward extends AbstractMasterEntity<String> {
 	private AppUser sender = new AppUser();
 	
 	
-	@Id
-	private
-	Date rewardDate;
+	@Temporal(TemporalType.TIMESTAMP)
+	private	Date rewardDate;
 	
 	
 	@Override
@@ -38,7 +45,7 @@ public class UserReward extends AbstractMasterEntity<String> {
 
 	@Override
 	public String getId() {
-		return null;
+		return id;
 	}
 
 	
