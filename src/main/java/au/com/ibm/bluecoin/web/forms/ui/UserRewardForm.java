@@ -53,8 +53,15 @@ public class UserRewardForm extends AbstractMaintenanceForm<String, UserReward> 
 	@PostConstruct
 	public void init() {
 	
-		//userRewards=userRewardSvc.getDao().findAll();
-		userRewards=userRewardSvc.getDao().getRewardsByUser(getLoginForm().getUserName());
+		try
+		{
+		
+			userRewards=userRewardSvc.getDao().getAllRewards();
+		}
+		catch(Exception ex)
+		{
+			ex.printStackTrace();
+		}
 	}
 	
 	private List<UserReward> userRewards;
@@ -107,6 +114,8 @@ public class UserRewardForm extends AbstractMaintenanceForm<String, UserReward> 
 	 * @return the userRewards
 	 */
 	public List<UserReward> getUserRewards() {
+		
+		userRewards=userRewardSvc.getDao().getRewardsByUser(getLoginForm().getUserName());
 		return userRewards;
 	}
 

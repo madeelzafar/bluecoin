@@ -61,6 +61,20 @@ public class UserRewardDao extends AbstractDao<UserReward, String, UserRewardRep
 		return result;
 	}
 	
+	
+	
+	public List<UserReward> getAllRewards() {
+		CriteriaBuilder c = getEntityManager().getCriteriaBuilder();
+		CriteriaQuery<UserReward> criteria = c.createQuery(UserReward.class);
+		Root<UserReward> usr = criteria.from(UserReward.class);
+		//List<Predicate> predicates = new ArrayList<Predicate>();
+		criteria.select(usr);
+		
+		List<UserReward> resultList = getEntityManager().createQuery(criteria).getResultList();
+		return resultList;
+	}
+	
+	
 
 	public List<UserReward> getUnReadRewardsByUser(String username) {
 		

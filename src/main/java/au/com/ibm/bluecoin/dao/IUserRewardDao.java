@@ -27,4 +27,6 @@ public interface IUserRewardDao extends IDao<UserReward, String, UserRewardRepos
 	
 	public List<TeamLadderSummaryItem> getTeamLadder();
 	
+	public List<UserReward> getAllRewards();
+	
 }

@@ -85,6 +85,8 @@
         <ui:include src="layoutmenu.xhtml" />
 
         <div id="layout-portlets-cover">
+        	<p:growl id="growl" showDetail="true" autoUpdate="true" closable="true"
+				life="5000" />
 			<h:panelGroup layout="block" id="mainContent">
 			 
 				<ui:insert name="content">

@@ -18,10 +18,9 @@
 						value="#{userRewardForm.userRewards}"
 						style="font-size:small" reflow="true">
 
-						<!-- 
-						<p:column headerText="Recepient" priority="1">
-							<h:outputText value="#{usr.appUser.login}" />
-						</p:column> -->
+						<p:column headerText="Awarded By" priority="1">
+							<h:outputText value="#{usr.sender.login}" />
+						</p:column>
 						
 						<p:column headerText="Amount" priority="1">
 							<h:outputText value="  #{usr.rewardAmount}" />
