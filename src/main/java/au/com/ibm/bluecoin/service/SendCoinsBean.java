@@ -19,6 +19,7 @@ import au.com.ibm.bluecoin.model.relational.AppUser;
 import au.com.ibm.bluecoin.model.relational.Team;
 import au.com.ibm.bluecoin.model.relational.UserReward;
 import au.com.ibm.bluecoin.utils.PageDetails;
+import au.com.ibm.bluecoin.utils.SendMail;
 import au.com.ibm.bluecoin.web.forms.LoginForm;
 
 import com.twilio.sdk.TwilioRestClient;
@@ -153,7 +154,7 @@ public class SendCoinsBean {
 					
 					
 			Team team = getTeamSvc().getById("EnergyAustralia");
-			user.setTeam(team);
+			//user.setTeam(team);
 			
 			UserReward reward = new UserReward();
 			reward.setRewardDate(new Date());
@@ -162,18 +163,20 @@ public class SendCoinsBean {
 			
 			reward.setRewardAmount(Integer.parseInt(getAmount()));
 			reward.setRewardMessage(getMessage());
-			reward.setTeam(team);
+			reward.setTeam(user.getTeam());
 			getUserRewardSvc().create(reward);
 	
 			
 			// Build a filter for the SmsList
 			Map<String, String> params = new HashMap<String, String>();
 			// Update with your Twilio number 
-			params.put("From", "+61439767507");
-			params.put("Body", messageBody);
-			params.put("To", user.getMobile());
-			sms = messageFactory.create(params);
+			//params.put("From", "+61439767507");
+			//params.put("Body", messageBody);
+			//params.put("To", user.getMobile());
+			//sms = messageFactory.create(params);
 			
+			SendMail sendmail = new SendMail();
+			sendmail.sendMailusingSendGrid(messageBody, user.getMobile());
 			
 			
 		}
