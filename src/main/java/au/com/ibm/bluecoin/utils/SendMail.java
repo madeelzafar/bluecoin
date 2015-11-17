@@ -93,9 +93,12 @@ public class SendMail {
 
 		    email.addTo(emailAddress);
 		    email.setFrom("adeelzafar@gmail.com");
-		    //email.setSubject("Sending with SendGrid is Fun");
-		    //email.setHtml("and easy to do anywhere, even with Java");
-		    email.setText(message);
+		    email.setSubject("..");
+		    email.setHtml(message);
+		    
+		    System.out.println("Sending " + message + " to " + emailAddress);
+		    
+		    //email.setText(message);
 		    SendGrid.Response response = sendgrid.send(email);
 		
 				    
