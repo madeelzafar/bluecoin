@@ -10,6 +10,7 @@ import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.servlet.ServletContext;
@@ -26,6 +27,7 @@ import org.springframework.web.context.support.WebApplicationContextUtils;
 import au.com.ibm.bluecoin.config.ConfigUtil;
 import au.com.ibm.bluecoin.model.relational.AppUser;
 import au.com.ibm.bluecoin.model.relational.Team;
+import au.com.ibm.bluecoin.model.relational.UserReward;
 import au.com.ibm.bluecoin.scaffold.AbstractMaintenanceForm;
 import au.com.ibm.bluecoin.scaffold.IService;
 import au.com.ibm.bluecoin.service.ITeamSvc;
@@ -79,6 +81,24 @@ public class LoginForm extends AbstractMaintenanceForm<String, AppUser> {
 
 	public void setUserSvc(IUserRewardSvc userRewardSvc) {
 		this.userRewardSvc = userRewardSvc;
+	}
+	
+	
+	@ManagedProperty(value="#{trophyBean}")
+	private TrophyBean trophyBean;
+
+	/**
+	 * @return the loginForm
+	 */
+	public TrophyBean getTrophyBean() {
+		return trophyBean;
+	}
+
+	/**
+	 * @param loginForm the loginForm to set
+	 */
+	public void setTrophyBean(TrophyBean trophyBean) {
+		this.trophyBean = trophyBean;
 	}
 	
 
@@ -153,6 +173,8 @@ public class LoginForm extends AbstractMaintenanceForm<String, AppUser> {
 			
 			if (userRewardSvc.getDao().getUnReadRewardsByUser(getUserName()).size()>0)
 			{
+				UserReward reward = userRewardSvc.getDao().getUnReadRewardsByUser(getUserName()).get(0);
+				getTrophyBean().setUserReward(reward);
 				getSessionModel().setContent("/ui/viewTrophy.xhtml");
 			}
 			else

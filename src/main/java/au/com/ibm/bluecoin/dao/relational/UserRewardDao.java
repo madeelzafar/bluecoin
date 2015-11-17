@@ -89,6 +89,7 @@ public class UserRewardDao extends AbstractDao<UserReward, String, UserRewardRep
 		Predicate predicate = c.equal(usr.get("read"), "0");
 		predicates.add(predicate);
 		criteria.where(c.or(predicates.toArray(new Predicate[0])));
+		//criteria.orderBy(c.desc(usr.get("rewardDate")));
 		List<UserReward> resultList = getEntityManager().createQuery(criteria).getResultList();
 		
 		List<UserReward> result = new ArrayList<UserReward>();

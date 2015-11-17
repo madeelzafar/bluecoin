@@ -22,6 +22,10 @@
 				    	<div class="ContainerIndent">
 				    		<div class="Card">
 				    		
+				    		Hi 	#{trophyBean.userReward.recepient.login},
+				    		<br/>
+				    		Congratulations!!!. <br/>You have received 	#{trophyBean.userReward.rewardAmount} coins from #{trophyBean.userReward.sender.login}<br/>
+				    		Message:<br/>#{trophyBean.userReward.rewardMessage}
 				    			
 				    			<p:panelGrid styleClass="noBorderGrid" style="border: none !important; padding: 4px">
 									
@@ -32,16 +36,13 @@
 
 
 									<p:row>
-										<p:column><p:commandButton value="OK" icon="fa fa-ok" styleClass="CyanButton"  action="#{navigationBean.home}" update="mainContent,form"/>
+										<p:column><p:commandButton value="OK" icon="fa fa-ok" styleClass="CyanButton"  action="#{trophyBean.setAsRead}" update="mainContent,form"/>
 										</p:column>
 									</p:row>
 							
 				    			</p:panelGrid>
 								
-								
-								
-								
-		
+					
 				    		</div>
 				    	</div>
 	                </div>
