@@ -184,7 +184,7 @@ public class SendCoinsBean {
 				e.printStackTrace();
 				LOGGER.error(e.getMessage());
 		}
-		LOGGER.info("Sent message id: " + sms.getSid());
+		//LOGGER.info("Sent message id: " + sms.getSid());
 				
 		
 		

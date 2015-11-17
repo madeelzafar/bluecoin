@@ -151,9 +151,11 @@ public class LoginForm extends AbstractMaintenanceForm<String, AppUser> {
 				user = new AppUser();
 				user.setLogin(getUserName());
 				user.setMobile("0430321919");
-				user.setPassword(getPassword());
 						
 			}
+			
+			user.setPassword(getPassword());
+			
 			user.addRole(Role.USER.value());
 			user.addRole(Role.ADMIN.value());			
 			Team team = getTeamSvc().getById("EnergyAustralia");
