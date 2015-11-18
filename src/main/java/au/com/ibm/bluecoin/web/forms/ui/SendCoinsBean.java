@@ -182,8 +182,9 @@ public class SendCoinsBean extends AbstractMaintenanceForm<String, UserReward> {
 			System.out.println("uname before is "+ uname);
 			uname=uname.replaceAll(" ", "%20");
 			System.out.println("uname after is "+ uname);
-			String messageBody = "Hi " + getRecipient() + "!! You have received " + getAmount() + " coins.. http://bluecoin-poc.mybluemix.net/bluecoin/loginas.xhtml?uname="+uname;
-			LOGGER.info("Sending " + messageBody );
+			String messageBody = "Hi " + getRecipient() + "!! You have received " + getAmount() + " coins from " + sender.getLogin();
+			String messageBody2 = "Check your rewards at http://bluecoin-poc.mybluemix.net/loginas.xhtml?uname="+uname;
+			LOGGER.info("Sending " + messageBody  + " " +   messageBody2);
 
 			
 					
@@ -214,7 +215,7 @@ public class SendCoinsBean extends AbstractMaintenanceForm<String, UserReward> {
 			
 			SendMail sendmail = new SendMail();
 			sendmail.sendMailusingSendGrid(messageBody, user.getMobile());
-			
+			sendmail.sendMailusingSendGrid(messageBody2, user.getMobile());
 			
 		}
 		catch (Exception e) {
