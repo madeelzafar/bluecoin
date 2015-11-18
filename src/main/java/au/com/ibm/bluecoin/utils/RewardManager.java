@@ -136,28 +136,18 @@ public class RewardManager {
 	}
 	
 	
-	public String getRewardPoints(String rewardID)
-	{
-		for (RewardItem rewardItem: rewardItems )
-		{
-			if (rewardItem.getValue().toUpperCase().equals(rewardID.toUpperCase()))
-			{
-				return rewardItem.getPoints();
-			}
-		}
-		return "";
-	}
+
 	
-	public String getRewardName(String rewardID)
+	public RewardItem getRewardByID(String rewardID)
 	{
 		for (RewardItem rewardItem: rewardItems )
 		{
-			if (rewardItem.getName().equalsIgnoreCase(rewardID))
+			if (rewardItem.getValue().equalsIgnoreCase(rewardID))
 			{
-				return rewardItem.getPoints();
+				return rewardItem;
 			}
 		}
-		return "";
+		return null;
 	}
  
  

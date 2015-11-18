@@ -151,7 +151,7 @@ public class TrophyBean  extends AbstractMaintenanceForm<String, UserReward> {
 	 */
 	public String getRewardName() {
 		System.out.println("Getting reward name for " + this.userReward.getRewardType() );
-		return getRewardManager().getRewardName(this.userReward.getRewardType());
+		return getRewardManager().getRewardByID(this.userReward.getRewardType()).getName();
 	}
 
 	/**

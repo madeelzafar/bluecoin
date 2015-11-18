@@ -164,8 +164,7 @@ public class SendCoinsBean extends AbstractMaintenanceForm<String, UserReward> {
 	
 	public void sendCoins()
 	{
-		
-		setAmount(getRewardManager().getRewardPoints(getSelectedReward()));
+		setAmount(getRewardManager().getRewardByID(getSelectedReward()).getPoints());
 		Sms sms = null;
 		String messageBody = "Hi " + getRecipient() + "!! You have received " + getAmount() + " coins.. http://bluecoin-poc.mybluemix.net";
 		LOGGER.info("Sending " + messageBody );
@@ -310,7 +309,7 @@ public class SendCoinsBean extends AbstractMaintenanceForm<String, UserReward> {
 	public void onRewardChange()
 	{
 		System.out.println("Changing reward to " + getSelectedReward());
-		setAmount(getRewardManager().getRewardPoints(getSelectedReward()));
+		setAmount(getRewardManager().getRewardByID(getSelectedReward()).getPoints());
 		System.out.println("Amount has been set to " + getAmount());
 	}
 	

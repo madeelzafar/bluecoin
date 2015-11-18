@@ -12,14 +12,14 @@
 			<div class="ContainerIndent">
 				<div class="Card ShadowEffect">
 						<h2 class="BigTopic">
-							<i class="fa fa-users MarRight10"></i> #{userRewardForm.viewOneTitle}
+							<i class="fa fa-users MarRight10"></i> #{progressBarForm.viewOneTitle}
 						</h2>
 
 
-						<c:forEach items="#{rewardManager.rewardItems}" var="reward">
+						<c:forEach items="#{progressBarForm.progressBar}" var="progress">
   							<p:panel>
-				    			<h:outputText value="#{reward.name}"/>
-				    			<p:progressBar value="50" displayOnly="true"/>
+				    			<h:outputText value="#{progress.reward.name}"/>
+				    			<p:progressBar value="#{progress.progress}" labelTemplate="#{progress.currentPoints}/#{progress.totalPoints}" displayOnly="true"/>
 							  </p:panel>
 						</c:forEach>
 

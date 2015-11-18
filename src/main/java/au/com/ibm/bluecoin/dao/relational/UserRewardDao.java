@@ -16,8 +16,11 @@ import au.com.ibm.bluecoin.dao.Dao;
 import au.com.ibm.bluecoin.dao.IUserRewardDao;
 import au.com.ibm.bluecoin.dao.relational.repository.UserRewardRepository;
 import au.com.ibm.bluecoin.model.relational.AppUser;
+import au.com.ibm.bluecoin.model.relational.ProgressSummaryItem;
 import au.com.ibm.bluecoin.model.relational.TeamLadderSummaryItem;
 import au.com.ibm.bluecoin.model.relational.UserReward;
+import au.com.ibm.bluecoin.utils.RewardItem;
+import au.com.ibm.bluecoin.utils.RewardManager;
 
 
 @Dao
@@ -46,7 +49,7 @@ public class UserRewardDao extends AbstractDao<UserReward, String, UserRewardRep
 		}
 		*/
 		//criteria.where(c.or(predicates.toArray(new Predicate[0])));
-		
+		criteria.orderBy(c.desc(usr.get("rewardDate")));
 		List<UserReward> resultList = getEntityManager().createQuery(criteria).getResultList();
 		List<UserReward> result = new ArrayList<UserReward>();
 		for (int i=0; i< resultList.size(); i++){
@@ -107,6 +110,7 @@ public class UserRewardDao extends AbstractDao<UserReward, String, UserRewardRep
 	}
 	
 	
+	
 	public List<TeamLadderSummaryItem> getTeamLadder() {
 		
 		System.out.println("getTeamLadder");
@@ -136,10 +140,44 @@ public class UserRewardDao extends AbstractDao<UserReward, String, UserRewardRep
 			 ex.printStackTrace();
 		 }
 			
-
-
-		return teamLadder;
+	return teamLadder;
 	}
+
+
+
+
+	public List<ProgressSummaryItem> getProgressBar(String username) {
+		
+		System.out.println("getProgressBar");
+		
+		 List<ProgressSummaryItem> progressBar = new  ArrayList<ProgressSummaryItem>();
+		 RewardManager rewardManager = new RewardManager();
+		 
+		 
+		 try{
+			Query q = getEntityManager().createQuery("select ent.rewardType, sum(ent.rewardAmount) as total from UserReward ent where ent.recepient.login='" + username  +"'  group by ent.recepient.login, ent.rewardType order by total desc"); 
+				
+			 List<Object[]> resultList = q.getResultList();
+	
+			for (Object[] result : resultList)
+			{
+				
+					ProgressSummaryItem item = new ProgressSummaryItem();
+					item.setCurrentPoints((long)result[1]);
+					RewardItem rewardItem = rewardManager.getRewardByID((String)result[0]);
+					item.setReward(rewardItem);
+					progressBar.add(item);
+			}
+		 }
+		 catch(Exception ex)
+		 {
+			 ex.printStackTrace();
+		 }
+			
+	return progressBar;
+	}
+
+
 
 
 
