@@ -25,10 +25,10 @@ import javax.faces.bean.SessionScoped;
 public class RewardManager {
          
     private List<RewardItem> rewardItems;
-     
-    @PostConstruct
-    public void init() {
-    	
+    
+    
+    public RewardManager()
+    {
     	rewardItems = new ArrayList<RewardItem>();
     	
     	RewardItem item = new RewardItem();
@@ -117,7 +117,15 @@ public class RewardManager {
     	item.setPoints("10");
     	rewardItems.add(item);	
     	
-  }
+
+    	
+    	
+    }
+    
+    @PostConstruct
+    public void init() {
+    	
+      }
  
     
 
@@ -140,6 +148,12 @@ public class RewardManager {
 	
 	public RewardItem getRewardByID(String rewardID)
 	{
+		if (rewardItems == null)
+		{
+			System.out.println("RewardItems is null.. but why???");
+		}
+		
+		
 		for (RewardItem rewardItem: rewardItems )
 		{
 			if (rewardItem.getValue().equalsIgnoreCase(rewardID))

@@ -148,7 +148,7 @@ public class UserRewardDao extends AbstractDao<UserReward, String, UserRewardRep
 
 	public List<ProgressSummaryItem> getProgressBar(String username) {
 		
-		System.out.println("getProgressBar");
+		System.out.println("getProgressBar for " + username);
 		
 		 List<ProgressSummaryItem> progressBar = new  ArrayList<ProgressSummaryItem>();
 		 RewardManager rewardManager = new RewardManager();
@@ -164,9 +164,14 @@ public class UserRewardDao extends AbstractDao<UserReward, String, UserRewardRep
 				
 					ProgressSummaryItem item = new ProgressSummaryItem();
 					item.setCurrentPoints((long)result[1]);
-					RewardItem rewardItem = rewardManager.getRewardByID((String)result[0]);
-					item.setReward(rewardItem);
-					progressBar.add(item);
+					
+					String rewardType = (String)result[0];
+					if (!rewardType.equals(""))
+					{
+						RewardItem rewardItem = rewardManager.getRewardByID(rewardType);
+						item.setReward(rewardItem);
+						progressBar.add(item);
+					}
 			}
 		 }
 		 catch(Exception ex)

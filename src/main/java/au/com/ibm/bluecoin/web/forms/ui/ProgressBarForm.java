@@ -110,7 +110,7 @@ public class ProgressBarForm extends AbstractMaintenanceForm<String, UserReward>
 	/**
 	 * @param teamLadder the teamLadder to set
 	 */
-	public void setProgressBar(List<ProgressSummaryItem> teamLadder) {
+	public void setProgressBar(List<ProgressSummaryItem> progressBar) {
 		this.progressBar = progressBar;
 	}
 

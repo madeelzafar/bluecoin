@@ -15,13 +15,12 @@
 							<i class="fa fa-users MarRight10"></i> #{progressBarForm.viewOneTitle}
 						</h2>
 
-
-						<c:forEach items="#{progressBarForm.progressBar}" var="progress">
+						<ui:repeat id="dtappUsers" value="#{progressBarForm.progressBar}" var="p">
   							<p:panel>
-				    			<h:outputText value="#{progress.reward.name}"/>
-				    			<p:progressBar value="#{progress.progress}" labelTemplate="#{progress.currentPoints}/#{progress.totalPoints}" displayOnly="true"/>
+				    			<h:outputText value="#{p.reward.name}"/>
+				    			<p:progressBar value="#{p.progress}" labelTemplate="#{p.currentPoints}/#{p.totalPoints}" displayOnly="true"/>
 							  </p:panel>
-						</c:forEach>
+						</ui:repeat>
 
 					<br/>
 				</div>

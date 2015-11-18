@@ -16,7 +16,7 @@
 
 					<p:dataTable id="dtappUsers" var="usr"
 						value="#{userRewardForm.userRewards}"
-						style="font-size:small" reflow="true">
+						style="font-size:small">
 
 						<p:column headerText="Awarded By" priority="1">
 							<h:outputText value="#{usr.sender.login}" />
@@ -31,7 +31,9 @@
 				
 				
 						<p:column headerText="Date" priority="1">
-							<h:outputText value="#{usr.rewardDate}" />
+							<h:outputText value="#{usr.rewardDate}">
+							  <f:convertDateTime type="date" pattern="dd-MMM-yy"/>
+							  </h:outputText>
 						</p:column>
 				
 						</p:dataTable>
