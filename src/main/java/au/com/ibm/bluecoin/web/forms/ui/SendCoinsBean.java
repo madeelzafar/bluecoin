@@ -1,4 +1,4 @@
-package au.com.ibm.bluecoin.service;
+package au.com.ibm.bluecoin.web.forms.ui;
 
 
 import java.util.ArrayList;
@@ -18,7 +18,13 @@ import au.com.ibm.bluecoin.dao.relational.UserDao;
 import au.com.ibm.bluecoin.model.relational.AppUser;
 import au.com.ibm.bluecoin.model.relational.Team;
 import au.com.ibm.bluecoin.model.relational.UserReward;
+import au.com.ibm.bluecoin.scaffold.AbstractMaintenanceForm;
+import au.com.ibm.bluecoin.scaffold.IService;
+import au.com.ibm.bluecoin.service.ITeamSvc;
+import au.com.ibm.bluecoin.service.IUserRewardSvc;
+import au.com.ibm.bluecoin.service.IUserSvc;
 import au.com.ibm.bluecoin.utils.PageDetails;
+import au.com.ibm.bluecoin.utils.RewardManager;
 import au.com.ibm.bluecoin.utils.SendMail;
 import au.com.ibm.bluecoin.web.forms.LoginForm;
 
@@ -36,7 +42,7 @@ import com.twilio.sdk.resource.instance.Sms;
  *
  */
 @ManagedBean
-public class SendCoinsBean {
+public class SendCoinsBean extends AbstractMaintenanceForm<String, UserReward> {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(SendCoinsBean.class);
 	
@@ -44,6 +50,9 @@ public class SendCoinsBean {
 	private String amount="";
 	private String recipient="";
 	private String message="";
+	private String amountMessage="";
+	private String selectedReward="";
+	
 	
 	
 	private String accountSID = "";
@@ -79,6 +88,25 @@ public class SendCoinsBean {
 	public void setLoginForm(LoginForm loginForm) {
 		this.loginForm = loginForm;
 	}
+	
+	
+	@ManagedProperty(value="#{rewardManager}")
+	private RewardManager rewardManager;
+
+	/**
+	 * @return the rewardManager
+	 */
+	public RewardManager getRewardManager() {
+		return rewardManager;
+	}
+
+	/**
+	 * @param rewardManager the rewardManager to set
+	 */
+	public void setRewardManager(RewardManager rewardManager) {
+		this.rewardManager = rewardManager;
+	}
+	
 
 	
 	
@@ -137,6 +165,7 @@ public class SendCoinsBean {
 	public void sendCoins()
 	{
 		
+		setAmount(getRewardManager().getRewardPoints(getSelectedReward()));
 		Sms sms = null;
 		String messageBody = "Hi " + getRecipient() + "!! You have received " + getAmount() + " coins.. http://bluecoin-poc.mybluemix.net";
 		LOGGER.info("Sending " + messageBody );
@@ -164,6 +193,9 @@ public class SendCoinsBean {
 			reward.setRewardAmount(Integer.parseInt(getAmount()));
 			reward.setRewardMessage(getMessage());
 			reward.setTeam(user.getTeam());
+			reward.setRewardType(getSelectedReward());
+			
+			
 			getUserRewardSvc().create(reward);
 	
 			
@@ -185,8 +217,9 @@ public class SendCoinsBean {
 				LOGGER.error(e.getMessage());
 		}
 		//LOGGER.info("Sent message id: " + sms.getSid());
-				
 		
+		System.out.println("Navigating back to home..");
+		getSessionModel().setContent("/home.xhtml");
 		
 	}
 
@@ -220,6 +253,7 @@ public class SendCoinsBean {
 	 */
 	public void setAmount(String amount) {
 		this.amount = amount;
+		setAmountMessage(getAmount());
 	}
 
 	/**
@@ -235,4 +269,105 @@ public class SendCoinsBean {
 	public void setMessage(String message) {
 		this.message = message;
 	}
+
+	/**
+	 * @return the amountMessage
+	 */
+	public String getAmountMessage() {
+		return amountMessage;
+	}
+
+	/**
+	 * @param amountMessage the amountMessage to set
+	 */
+	public void setAmountMessage(String amountMessage) {
+		
+		if (amountMessage.equals(""))
+		{
+			this.amountMessage = "";
+		}
+		else
+		{
+			this.amountMessage = "Selected reward is worth " + amountMessage + " points";	
+		}
+		
+	}
+
+	/**
+	 * @return the selectedReward
+	 */
+	public String getSelectedReward() {
+		return selectedReward;
+	}
+
+	/**
+	 * @param selectedReward the selectedReward to set
+	 */
+	public void setSelectedReward(String selectedReward) {
+		this.selectedReward = selectedReward;
+	}
+	
+	public void onRewardChange()
+	{
+		System.out.println("Changing reward to " + getSelectedReward());
+		setAmount(getRewardManager().getRewardPoints(getSelectedReward()));
+		System.out.println("Amount has been set to " + getAmount());
+	}
+	
+	
+	
+	
+	
+	@Override
+	public UserReward getNewOne() {
+		return new UserReward();
+	}
+
+	@Override
+	public List<UserReward> getDefaultSearchResults() {
+		return userRewardSvc.getAll();
+	}
+
+	@Override
+	public String getEntityBusinessName() {
+		return "Send Coins";
+	}
+	
+	
+	
+	@SuppressWarnings("rawtypes")
+	@Override
+	public IService getService() {
+		return userRewardSvc;
+	}
+
+	
+	@Override
+	public void executeBeforeSave() {
+		// Set the default password unless specified
+		
+	}
+	
+
+	@Override
+	public void executeAfterSave() {
+	
+
+	}
+
+	@Override
+	public boolean canNewEntityEditExisting() {
+		// We dont want to touch existing users
+		return false;
+	}
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }

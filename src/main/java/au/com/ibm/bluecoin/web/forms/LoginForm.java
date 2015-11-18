@@ -188,11 +188,6 @@ public class LoginForm extends AbstractMaintenanceForm<String, AppUser> {
 			}
 			
 			
-			
-			
-			
-			
-
 		} catch (Exception ex) {
 			// log.equals(ex.getMessage());
 			// ConfigUtil.addMessage("Login Failed: " + ex.getMessage());

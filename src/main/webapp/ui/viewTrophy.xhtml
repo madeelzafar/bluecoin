@@ -24,13 +24,13 @@
 				    		
 				    		Hi 	#{trophyBean.userReward.recepient.login},
 				    		<br/>
-				    		Congratulations!!!. <br/>You have received 	#{trophyBean.userReward.rewardAmount} coins from #{trophyBean.userReward.sender.login}<br/>
+				    		Congratulations!!!. <br/>You have received 	#{trophyBean.userReward.rewardAmount} coins for your #{trophyBean.rewardName} from #{trophyBean.userReward.sender.login}<br/>
 				    		Message:<br/>#{trophyBean.userReward.rewardMessage}
 				    			
 				    			<p:panelGrid styleClass="noBorderGrid" style="border: none !important; padding: 4px">
 									
 									<p:row>
-										<p:column><h:graphicImage value="../../resources/images/duck1.gif" width="154" height="200" />
+										<p:column><h:graphicImage value="../../resources/images/#{trophyBean.userReward.rewardType}.gif" width="154" height="200" />
 										</p:column>
 									</p:row>
 

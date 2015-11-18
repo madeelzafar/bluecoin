@@ -19,6 +19,8 @@ public class UserReward extends AbstractMasterEntity<String> {
 	@OneToOne
 	private AppUser recepient = new AppUser();
 	private int rewardAmount;
+	private String rewardType;
+	
 	private String rewardMessage;
 	boolean read=false;
 	
@@ -143,5 +145,19 @@ public class UserReward extends AbstractMasterEntity<String> {
 	 */
 	public void setSender(AppUser sender) {
 		this.sender = sender;
+	}
+
+	/**
+	 * @return the rewardType
+	 */
+	public String getRewardType() {
+		return rewardType;
+	}
+
+	/**
+	 * @param rewardType the rewardType to set
+	 */
+	public void setRewardType(String rewardType) {
+		this.rewardType = rewardType;
 	}
 }

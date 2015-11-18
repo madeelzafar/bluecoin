@@ -55,7 +55,7 @@ public class TeamLadderForm extends AbstractMaintenanceForm<String, UserReward> 
 
 	@Override
 	public String getEntityBusinessName() {
-		return "User Reward";
+		return "Team Ladder";
 	}
 	
 	

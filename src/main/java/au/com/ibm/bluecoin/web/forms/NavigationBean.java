@@ -71,6 +71,11 @@ public class NavigationBean {
 		getSessionModel().setContent("/ui/teamLadder.xhtml");
 	}
 	
+	public void viewProgress() {
+		LOGGER.info("View progress");
+		getSessionModel().setContent("/ui/myProgress.xhtml");
+	}
+	
 	
 	public SessionModel getSessionModel() {
 		return sessionModel;

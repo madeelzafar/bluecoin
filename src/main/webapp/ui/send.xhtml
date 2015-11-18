@@ -17,44 +17,75 @@
 	    <div class="Container100 Responsive100">    
 	    	<div class="ContainerIndent">
 	    		<div class="Card">
-	                <div class="CardTopic"> <i class="fa fa-arrow-circle-o-down Fs30 Fleft MarRight10"/>
-	                    <div class="EmptyBox10 ShowOnMobile"/>
-	                    Send Blue Coins<br/>
-	                </div>
+	                <div class="CardTopic"> <i class="fa fa-arrow-circle-o-down MarRight5"/> Send Blue Coins<br/>
+	                    </div>
 	                <div class="Separator"/>
 	                
-	                <div class="Container100 Responsive100">
-				    	
-				    		<div class="Card">
-				    			<p:panelGrid styleClass="noBorderGrid" style="border: none !important; padding: 4px">
+	                 <div class="Container100 Responsive100">
+				    	<div class="ContainerIndent">
+	                        <div class="Card BlueBack Opac60 TexAlCenter">
+	                            <div class="DispInlBlock TexAlCenter">
+	                               <span class="Fs20 FontAdamantiumBold White">Monthly balance: 4,501</span><br/>
+	                                <span class="Fs FontAdamantium White">Remaining: 1,00</span>
+	                           
+	                            </div>
+	                            
+	                            
+				            </div>
+				    	</div>
+	                </div>
+	                
+	                	
+				    			<p:panelGrid styleClass="noBorderGrid" style="border: none !important; width:100%;padding: 4px">
 									
 									<p:row>
-										<p:column><h:outputText>Recipient:</h:outputText></p:column>
-										
-										<p:column><p:autoComplete  id="recipient" value="#{sendCoinsBean.recipient}" completeMethod="#{sendCoinsBean.completeText}" /></p:column>
+										<p:column><p:autoComplete  id="recipient" value="#{sendCoinsBean.recipient}" completeMethod="#{sendCoinsBean.completeText}"  required="true" requiredMessage="Enter Recepient" style="" /><p:watermark for="recipient" value="Recipient" size="30" /></p:column>
+										  
 										<!-- <p:column><p:inputText value="#{sendCoinsBean.recipient}"></p:column>
 										  -->
 									</p:row>
 
-									<p:row>
-										<p:column><h:outputText>Coin Type:</h:outputText></p:column>
+								<!--  
+								<p:row>
 										<p:column>
-											<p:selectOneMenu styleClass="Wid95">
-					                            <f:selectItem itemLabel="One Team" itemValue="One Team" />
-					                            <f:selectItem itemLabel="Client" itemValue="Client" />
-					                            <f:selectItem itemLabel="Bluecoin" itemValue="Bluecoin" />
-											</p:selectOneMenu>
+										
+											<p:selectCheckboxMenu id="menu" label="Select 1-3-9 practices" 
+											value="#{checkboxView.selectedValues}" filter="true" filterMatchMode="contains" 
+											panelStyle="width:250px"> <f:selectItems value="#{checkboxView.values}" />
+             					
+        									</p:selectCheckboxMenu>
+											
+											
 										</p:column>
 									</p:row>
+									
+									-->
+									
+									<p:row>
+										<p:column><p:selectOneMenu styleClass="Wid95" value="#{sendCoinsBean.selectedReward}">
+										
+												<p:ajax listener="#{sendCoinsBean.onRewardChange}" update="amount" />
+					                            <f:selectItem itemLabel="Select 1-3-9 practice" itemValue="" noSelectionOption="true" />
+					                           <f:selectItems value="#{rewardManager.rewardItems}" var="rewardItem" itemLabel="#{rewardItem.name}" itemValue="#{rewardItem.value}" />
+											</p:selectOneMenu>
+											
+										</p:column>
+									</p:row>
+									
+									
 
 									<p:row>
-										<p:column><h:outputText>Amount:</h:outputText></p:column>
-										<p:column><p:inputText value="#{sendCoinsBean.amount}"/></p:column>
+										<p:column><h:outputText id="amount" value="#{sendCoinsBean.amountMessage}"/>
+										</p:column>
+										
 									</p:row>
 									
 									<p:row>
-										<p:column><h:outputText>Message:</h:outputText></p:column>
-										<p:column><p:inputText value="#{sendCoinsBean.message}"/></p:column>
+										<p:column>
+										<p:inputTextarea id="message" rows="3" cols="25" value="#{sendCoinsBean.message}"/>
+										<p:watermark for="message" value="Type your message here" />
+										
+										</p:column>
 									</p:row>
 									
 									
@@ -63,9 +94,9 @@
 								
 								<p:commandButton value="Send" icon="fa fa-send" styleClass="OrangeButton RaisedButton"  action="#{sendCoinsBean.sendCoins}"/>
 								
-				    		</div>
 				    	
-	                </div>
+				    	
+	               
 
 	    		</div>
 	    	</div>

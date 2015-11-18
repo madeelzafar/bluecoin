@@ -79,7 +79,7 @@ public class UserRewardForm extends AbstractMaintenanceForm<String, UserReward> 
 
 	@Override
 	public String getEntityBusinessName() {
-		return "User Reward";
+		return "User Rewards";
 	}
 	
 	

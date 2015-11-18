@@ -10,6 +10,7 @@ import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.servlet.ServletContext;
@@ -33,6 +34,7 @@ import au.com.ibm.bluecoin.service.ITeamSvc;
 import au.com.ibm.bluecoin.service.IUserRewardSvc;
 import au.com.ibm.bluecoin.service.IUserSvc;
 import au.com.ibm.bluecoin.service.RewardBean;
+import au.com.ibm.bluecoin.utils.RewardManager;
 import au.com.ibm.bluecoin.utils.Role;
 import au.com.ibm.bluecoin.utils.ValidationUtils;
 
@@ -43,6 +45,13 @@ public class TrophyBean  extends AbstractMaintenanceForm<String, UserReward> {
 	
 	
 	private UserReward userReward;
+	
+	private String rewardName;
+	
+	
+	
+	
+	
 	
 	
 	public static final String DEFAULT_USER = "admin";
@@ -73,6 +82,24 @@ public class TrophyBean  extends AbstractMaintenanceForm<String, UserReward> {
 		this.userRewardSvc = userRewardSvc;
 	}
 	
+	
+	@ManagedProperty(value="#{rewardManager}")
+	private RewardManager rewardManager;
+
+	/**
+	 * @return the rewardManager
+	 */
+	public RewardManager getRewardManager() {
+		return rewardManager;
+	}
+
+	/**
+	 * @param rewardManager the rewardManager to set
+	 */
+	public void setRewardManager(RewardManager rewardManager) {
+		this.rewardManager = rewardManager;
+	}
+	
 
 
 
@@ -89,7 +116,7 @@ public class TrophyBean  extends AbstractMaintenanceForm<String, UserReward> {
 
 	@Override
 	public String getEntityBusinessName() {
-		return "Login";
+		return "View Trophy";
 	}
 
 	@Override
@@ -117,6 +144,21 @@ public class TrophyBean  extends AbstractMaintenanceForm<String, UserReward> {
 		u.markAsRead();
 		getUserRewardSvc().update(u);
 		getSessionModel().setContent("/home.xhtml");
+	}
+
+	/**
+	 * @return the rewardName
+	 */
+	public String getRewardName() {
+		System.out.println("Getting reward name for " + this.userReward.getRewardType() );
+		return getRewardManager().getRewardName(this.userReward.getRewardType());
+	}
+
+	/**
+	 * @param rewardName the rewardName to set
+	 */
+	public void setRewardName(String rewardName) {
+		this.rewardName = rewardName;
 	}
 
 
