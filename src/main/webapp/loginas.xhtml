@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+    <h:head>
+        <f:facet name="first">
+            <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+            <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+            <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+            <meta name="apple-mobile-web-app-capable" content="yes" />
+        </f:facet>
+        
+    </h:head>
+
+    <h:body id="forwardForm">
+        
+         <h:form id="form">
+				<p:commandButton value="Sign In" id="forwardBtn" action="#{loginForm.autoLogin}" style="display:none">
+				<f:param name="username" value="${autoLoginBean.uname}" />
+				 </p:commandButton>
+			</h:form>
+			
+			 <script type="text/javascript">
+        		// $("#forwardBtn").click();
+        		document.getElementById('form:forwardBtn').click();
+        		//document.getElementById('form').submit();
+    		</script>
+        
+        
+        
+        </h:body>
+
+</html>

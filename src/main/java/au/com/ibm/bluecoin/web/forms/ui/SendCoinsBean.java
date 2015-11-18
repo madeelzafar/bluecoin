@@ -14,6 +14,7 @@ import javax.faces.bean.ManagedProperty;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import au.com.ibm.bluecoin.config.ConfigUtil;
 import au.com.ibm.bluecoin.dao.relational.UserDao;
 import au.com.ibm.bluecoin.model.relational.AppUser;
 import au.com.ibm.bluecoin.model.relational.Team;
@@ -162,13 +163,11 @@ public class SendCoinsBean extends AbstractMaintenanceForm<String, UserReward> {
 	
 	
 	
-	public void sendCoins()
+	public String sendCoins()
 	{
 		setAmount(getRewardManager().getRewardByID(getSelectedReward()).getPoints());
 		Sms sms = null;
-		String messageBody = "Hi " + getRecipient() + "!! You have received " + getAmount() + " coins.. http://bluecoin-poc.mybluemix.net";
-		LOGGER.info("Sending " + messageBody );
-
+	
 		TwilioRestClient client = new TwilioRestClient(accountSID, authToken);
 
 	
@@ -179,7 +178,14 @@ public class SendCoinsBean extends AbstractMaintenanceForm<String, UserReward> {
 			
 			AppUser user = getUserSvc().getById(getRecipient());
 			AppUser sender = getUserSvc().getById(getLoginForm().getUserName()); 
-					
+			String uname= user.getLogin();
+			System.out.println("uname before is "+ uname);
+			uname=uname.replaceAll(" ", "%20");
+			System.out.println("uname after is "+ uname);
+			String messageBody = "Hi " + getRecipient() + "!! You have received " + getAmount() + " coins.. http://bluecoin-poc.mybluemix.net/bluecoin/loginas.xhtml?uname="+uname;
+			LOGGER.info("Sending " + messageBody );
+
+			
 					
 			Team team = getTeamSvc().getById("EnergyAustralia");
 			//user.setTeam(team);
@@ -219,6 +225,7 @@ public class SendCoinsBean extends AbstractMaintenanceForm<String, UserReward> {
 		
 		System.out.println("Navigating back to home..");
 		getSessionModel().setContent("/home.xhtml");
+		return ConfigUtil.getSavedUrl() + "?faces-redirect=true";				
 		
 	}
 

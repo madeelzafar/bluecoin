@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import javax.annotation.PostConstruct;
@@ -48,6 +49,7 @@ public class LoginForm extends AbstractMaintenanceForm<String, AppUser> {
 	private String loggedRole;
 	
 	public static final String DEFAULT_USER = "admin";
+
 
 	@EJB
 	private IUserSvc userSvc;
@@ -138,6 +140,20 @@ public class LoginForm extends AbstractMaintenanceForm<String, AppUser> {
 		this.password = password;
 	}
 
+	
+	public String autoLogin() throws ServletException, IOException
+	{
+		Map<String, String> parameterMap = (Map<String, String>) FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
+		String param = parameterMap.get("username");
+
+		System.out.println("Auto loggin in...");
+		setUserName(param);
+		setPassword("password");
+		login();
+		return "/templates/adamantium/index.xhtml?faces-redirect=true";
+	}
+	
+	
 	
 	
 	public String login() throws ServletException, IOException {

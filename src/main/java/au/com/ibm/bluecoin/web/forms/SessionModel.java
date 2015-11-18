@@ -23,7 +23,7 @@ public class SessionModel<T extends IMasterPersistentEntity> implements Serializ
 
 	private static final long serialVersionUID = -8287845504096436779L;
 
-	private String content = "/dashboard.xhtml";
+	private String content = "/home.xhtml";
 
 	private Mode mode;
 
