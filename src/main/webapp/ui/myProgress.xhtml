@@ -16,9 +16,10 @@
 						</h2>
 
 						<ui:repeat id="dtappUsers" value="#{progressBarForm.progressBar}" var="p">
-  							<p:panel>
+  							<p:panel id="progressPanel">
 				    			<h:outputText value="#{p.reward.name}"/>
-				    			<p:progressBar value="#{p.progress}" labelTemplate="#{p.currentPoints}/#{p.totalPoints}" displayOnly="true"/>
+				    			<p:progressBar id="progressbar" value="#{p.progress}" displayOnly="true"/>
+				    			<p:tooltip id="toolTipFade" for="progressPanel" value="#{p.currentPoints}/#{p.totalPoints} points accumulated" trackMouse="true"  />
 							  </p:panel>
 						</ui:repeat>
 
