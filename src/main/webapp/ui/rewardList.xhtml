@@ -9,14 +9,16 @@
 		
 		<div class="Container100 Responsive100">
 			
-			<div class="ContainerIndent">
+			<div class="ContainerIndent ">
 						<h2 class="BigTopic">
 							<i class="fa fa-users MarRight10"></i> #{userRewardForm.viewOneTitle}
 						</h2>
+						
+						<div class="TexAlCenter">
 
 					<p:dataTable id="dtappUsers" var="usr"
 						value="#{userRewardForm.userRewards}"
-						style="font-size:small">
+						style="font-size:small" >
 
 						<p:column headerText="From" priority="1">
 							<h:outputText value="#{usr.sender.login}" />
@@ -36,6 +38,7 @@
 				
 						</p:dataTable>
 					<br/>
+				</div>
 				</div>
 				</div>
 		

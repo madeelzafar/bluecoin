@@ -37,24 +37,17 @@
 	                <div class="Separator"/>
 	                
 	                 <div class="Container100 Responsive100">
-				    	<div class="ContainerIndent">
-	                        <div class="Card BlueBack Opac60 TexAlCenter">
-	                            <div class="DispInlBlock TexAlCenter">
+				    	    <div class="Card BlueBack Opac60 TexAlCenter">
 	                               <span class="Fs20 FontAdamantiumBold White">Monthly balance: 4,501</span><br/>
-	                                <span class="Fs FontAdamantium White">Remaining: 1,00</span>
-	                           
-	                            </div>
-	                            
-	                            
-				            </div>
-				    	</div>
-	                </div>
+	                               <span class="Fs FontAdamantium White">Remaining: 1,00</span>
+	                        </div>
+				    </div>
 	                
 	                	
 				    			<p:panelGrid styleClass="noBorderGrid" style="border: none !important; width:100%;padding: 4px">
 									
 									<p:row>
-										<p:column><p:autoComplete  id="recipient" value="#{sendCoinsBean.recipient}" completeMethod="#{sendCoinsBean.completeText}"  required="true" requiredMessage="Enter Recepient" style="" /><p:watermark for="recipient" value="Recipient" size="30" /></p:column>
+										<p:column><p:autoComplete  id="recipient" value="#{sendCoinsBean.recipient}" completeMethod="#{sendCoinsBean.completeText}"  required="true" requiredMessage="Enter Recepient" styleClass="Wid95" /><p:watermark for="recipient" value="Recipient" size="30" /></p:column>
 										  
 										<!-- <p:column><p:inputText value="#{sendCoinsBean.recipient}"></p:column>
 										  -->
