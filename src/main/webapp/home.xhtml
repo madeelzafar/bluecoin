@@ -52,12 +52,20 @@
 				    	   					<p:column><div class="EmptyBox20 ShowOnMobile"></div><p:button value="One Team" icon="fa fa-gift" styleClass="Fs20 FontAdamantiumBold  RedButton" style="width:100%;height:50px"/></p:column>
 				    	  				</p:row>
 				    	  				
+				    	  				<!-- 
 				    	  				<p:row>
-				    	
 				    	   					<p:column>	<div class="EmptyBox20 ShowOnMobile"></div>
-                        						<p:commandButton value="Blue Coins" image="../../resources/images/bluecoins.jpg" styleClass="Fs20 FontAdamantiumBold BlueButton" style="width:100%;height:50px" ajax="true" action="#{navigationBean.send}" process="@form" update="mainContent, form"/>
+                        						<p:commandButton value="Blue Coins" image="../../resources/images/bluecoins.jpg" styleClass="Fs20 FontAdamantiumBold CyanButton" style="width:100%;height:50px" ajax="true" action="#{navigationBean.send}" process="@form" update="mainContent, form"/>
 											</p:column>
-				    	  			</p:row>
+					    	  			</p:row>-->
+    			    	  				<p:row>
+				    	   					<p:column>	<div class="EmptyBox20 ShowOnMobile"></div>
+                        					
+                        					<p:commandLink ajax="true" action="#{navigationBean.send}" process="@form" update="mainContent, form">
+    											<h:graphicImage value="../../resources/images/bluecoins.png" style="max-width:220px;" />
+											</p:commandLink>
+											</p:column>
+					    	  			</p:row>
                             
                             			
 				    	  	</p:panelGrid>
