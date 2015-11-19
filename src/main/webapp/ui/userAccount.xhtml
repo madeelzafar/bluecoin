@@ -1,0 +1,72 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui">
+
+    <ui:define name="head">
+
+    </ui:define>
+    
+    <ui:define name="subheader">
+        Dashboard
+    </ui:define>
+
+    <h:form id="form">
+    
+	    <div class="Container100 Responsive100">    
+	    	<div class="ContainerIndent">
+	    		<div class="Card">
+	                <div class="CardTopic">
+	                
+	                
+	                   <table>
+	                    <tr>
+	                    <td>
+	                    <h:graphicImage value="../../resources/images/blueCoin.gif" width="64" height="64"/>
+	                    </td>
+	                    <td>
+	                     Account Details <i class="Fs40 Fleft MarRight10"/><br/>
+	                    <span class="CardSubTopic">View your account details</span> 
+	                    </td>
+	                    </tr>
+	                    </table>
+	                
+	                
+	                    </div>
+	                <div class="Separator"/>
+	                
+	                	
+				    			<p:panelGrid styleClass="noBorderGrid" style="border: none !important; width:100%;padding: 4px">
+									
+									<p:row>
+										<p:column><h:outputText id="login" value="#{userForm.user.login}"/>
+										</p:column>
+										
+									</p:row>
+									<p:row>
+										<p:column><p:inputText placeholder="Mobile Number"  id="mobile" value="#{userForm.user.mobile}" styleClass="Wid95" /></p:column>
+									</p:row>
+									<p:row>
+										<p:column><p:inputText placeholder="Email"  id="email" value="#{userForm.user.email}" styleClass="Wid95" /></p:column>
+									</p:row>
+									
+									<p:row>
+										<p:column><p:selectOneMenu styleClass="Wid95" value="#{userForm.user.team.name}">
+					                           <f:selectItems value="#{userForm.teams}" var="team" itemLabel="#{team.name}" itemValue="#{team.name}" />
+											</p:selectOneMenu>
+										</p:column>
+									</p:row>
+
+							
+				    			</p:panelGrid>
+								
+								<p:commandButton value="Update" icon="fa fa-save" styleClass="OrangeButton RaisedButton"  action="#{userForm.update}"/>
+								
+	    		</div>
+	    	</div>
+	    </div>
+	        
+    </h:form>
+
+</ui:composition>

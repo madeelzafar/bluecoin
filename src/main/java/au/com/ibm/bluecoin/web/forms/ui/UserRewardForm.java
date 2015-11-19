@@ -7,7 +7,9 @@ import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
+import javax.faces.context.FacesContext;
 
+import org.primefaces.event.SelectEvent;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -22,6 +24,7 @@ import au.com.ibm.bluecoin.service.IUserSvc;
 import au.com.ibm.bluecoin.utils.Role;
 import au.com.ibm.bluecoin.utils.ValidationUtils;
 import au.com.ibm.bluecoin.web.forms.LoginForm;
+import au.com.ibm.bluecoin.web.forms.TrophyBean;
 
 @ManagedBean
 public class UserRewardForm extends AbstractMaintenanceForm<String, UserReward> {
@@ -32,6 +35,26 @@ public class UserRewardForm extends AbstractMaintenanceForm<String, UserReward> 
 
 	@EJB
 	private IUserRewardSvc userRewardSvc;
+	
+	
+	@ManagedProperty(value="#{trophyBean}")
+	private TrophyBean trophyBean;
+
+	/**
+	 * @return the loginForm
+	 */
+	public TrophyBean getTrophyBean() {
+		return trophyBean;
+	}
+
+	/**
+	 * @param loginForm the loginForm to set
+	 */
+	public void setTrophyBean(TrophyBean trophyBean) {
+		this.trophyBean = trophyBean;
+	}
+	
+	
 
 	@ManagedProperty(value="#{loginForm}")
 	private LoginForm loginForm;
@@ -79,7 +102,7 @@ public class UserRewardForm extends AbstractMaintenanceForm<String, UserReward> 
 
 	@Override
 	public String getEntityBusinessName() {
-		return "User Rewards";
+		return "My Rewards";
 	}
 	
 	
@@ -125,6 +148,23 @@ public class UserRewardForm extends AbstractMaintenanceForm<String, UserReward> 
 	public void setUserRewards(List<UserReward> userRewards) {
 		this.userRewards = userRewards;
 	}
+	
+	
+	 public void  onRowSelect(SelectEvent event) {
+		 
+		 	UserReward reward =  (UserReward) event.getObject();
+	        System.out.println("Selecting following reward.. " + reward.getRewardType());
+	    	getTrophyBean().setUserReward(reward);
+			getSessionModel().setContent("/ui/viewTrophy.xhtml");
+			try
+			{
+				FacesContext.getCurrentInstance().getExternalContext().redirect("index.xhtml");
+			}
+			catch (Exception ex)
+			{
+				ex.printStackTrace();
+			}
+	  }
 
 
 

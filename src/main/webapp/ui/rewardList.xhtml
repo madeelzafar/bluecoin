@@ -11,14 +11,15 @@
 			
 			<div class="ContainerIndent ">
 						<h2 class="BigTopic">
-							<i class="fa fa-users MarRight10"></i> #{userRewardForm.viewOneTitle}
+							<i class="fa MarRight10"></i> #{userRewardForm.viewOneTitle}
 						</h2>
 						
 						<div class="TexAlCenter">
 
-					<p:dataTable id="dtappUsers" var="usr"
-						value="#{userRewardForm.userRewards}"
-						style="font-size:small" >
+					<p:dataTable id="dtappUsers" var="usr"  value="#{userRewardForm.userRewards}"	
+					style="font-size:small" selectionMode="single" rowKey="#{usr.id}" >
+						
+						<p:ajax event="rowSelect" listener="#{userRewardForm.onRowSelect}" />
 
 						<p:column headerText="From" priority="1">
 							<h:outputText value="#{usr.sender.login}" />
@@ -27,8 +28,8 @@
 						<p:column headerText="Coins" priority="1">
 							<h:outputText value="#{usr.rewardAmount}" />
 						</p:column>
-						<p:column headerText="Message" priority="1">
-							<h:outputText value="#{usr.rewardMessage}" />
+						<p:column headerText="Reward" priority="1">
+							<h:outputText value="#{usr.rewardType}" />
 						</p:column>
 						<p:column headerText="Date" priority="1">
 							<h:outputText value="#{usr.rewardDate}">

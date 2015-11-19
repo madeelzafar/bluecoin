@@ -14,29 +14,28 @@
 
     <h:form id="form">
     
-	    <div class="Container100 Responsive100">    
-	    	<div class="ContainerIndent">
-	    		<div class="Card">
-	                
+	    	        
 	                <div class="Container100 Responsive100">
-				    	<div class="ContainerIndent">
+				    		<div class="ContainerIndent">
+				    		
 				    		<div class="Card">
 				    		
-				    		Hi 	#{trophyBean.userReward.recepient.login},
-				    		<br/>
-				    		Congratulations!!!. <br/>You have received 	#{trophyBean.userReward.rewardAmount} coins for <b>#{trophyBean.rewardName}</b> from #{trophyBean.userReward.sender.login}<br/>
-				    		Message:<br/>#{trophyBean.userReward.rewardMessage}
-				    			
-				    			<p:panelGrid styleClass="noBorderGrid" style="border: none !important; padding: 4px">
-									
-									<p:row>
-										<p:column><h:graphicImage value="../../resources/images/#{trophyBean.userReward.rewardType}.gif" width="154" height="200" />
-										</p:column>
-									</p:row>
+									<div style='text-align:center'>
 
+											<span style='font-weight:normal;font-size:16.0pt'>Congratulations #{trophyBean.userReward.recepient.login}!</span>
+											<p><span style='font-weight:normal;font-size:12.0pt'>You have received #{trophyBean.userReward.rewardAmount} blue coins from #{trophyBean.userReward.sender.login} for:</span></p>
 
+											#{trophyBean.rewardName} <i class="Fs40 Fleft MarRight10"/>
+
+											<h:graphicImage value="../../resources/images/#{trophyBean.userReward.rewardType}.gif" width="154" height="200" />
+
+											<p><span style='font-weight:normal;'>#{trophyBean.userReward.rewardMessage}</span></p>
+									</div>
+
+				    			<p:panelGrid styleClass="noBorderGrid" style="margin: 0 auto; border: none !important; padding: 4px">
+								
 									<p:row>
-										<p:column><p:commandButton value="OK" icon="fa fa-ok" styleClass="CyanButton"  action="#{trophyBean.setAsRead}" update="mainContent,form"/>
+										<p:column><p:commandButton value="OK" styleClass="CyanButton"  action="#{trophyBean.setAsRead}" update="mainContent,form"/>
 										</p:column>
 									</p:row>
 							
@@ -45,12 +44,8 @@
 					
 				    		</div>
 				    	</div>
-	                </div>
-
-	    		</div>
-	    	</div>
-	    </div>
-	        
+				    	</div>
+	          
     </h:form>
 
 </ui:composition>
