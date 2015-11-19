@@ -11,9 +11,12 @@
 		<div class="Container100 Responsive100">
 			<div class="ContainerIndent">
 				<div class="Card ShadowEffect">
-						<h2 class="BigTopic">
-							<i class="fa fa-users MarRight10"></i> #{progressBarForm.viewOneTitle}
-						</h2>
+				
+				
+					<p:panel>
+						<h:graphicImage value="../../resources/images/dashboard.png" style="max-width:250px;"/>
+						</p:panel>
+						<div class="EmptyBox20 ShowOnMobile"></div>
 
 						<ui:repeat id="dtappUsers" value="#{progressBarForm.progressBar}" var="p">
   							<p:panel id="progressPanel">
@@ -24,6 +27,10 @@
 						</ui:repeat>
 
 					<br/>
+					
+					<p:commandLink ajax="true" action="#{navigationBean.send}" process="@form" update="mainContent, form">
+    											<h:graphicImage value="../../resources/images/bluecoins.png" style="max-width:220px;" />
+					</p:commandLink>
 				</div>
 			</div>
 		</div>

@@ -14,7 +14,27 @@
             <span id="menuline2" class="Animated05"></span>
             <span id="menuline3" class="Animated05"></span>
         </a>
+        <!-- <p:outputPanel id="topMenu">
+        	<h:outputText value="Progress" rendered="#{navigationBean.progressPage}"></h:outputText>
+        </p:outputPanel> -->
+        
+        
+          
+        
+        <p:outputPanel id="topMenu">
+        
+        <p:dock position="bottom" rendered="#{navigationBean.progressPage}">
+    <p:menuitem value="Home" icon="/resources/images/home.png" url="#"/>
+    <p:menuitem value="Home" icon="/resources/images/sendcoins.png" url="#"/>
+    <p:menuitem value="Home" icon="/resources/images/ladder.png" url="#"/>
+    <p:menuitem value="Home" icon="/resources/images/trophies.png" url="#"/>
+    
+</p:dock>
+</p:outputPanel>
+
+        
     </div>
+    
     <!-- TOPBAR END -->
     
 </ui:composition>

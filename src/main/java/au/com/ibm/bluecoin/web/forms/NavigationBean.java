@@ -25,6 +25,11 @@ public class NavigationBean {
 	@SuppressWarnings("rawtypes")
 	@ManagedProperty("#{sessionModel}")
 	private SessionModel sessionModel;
+	
+	
+	private boolean progressPage;
+	
+	
 		
 	public void dashboard() {
 		getSessionModel().addPage(new PageDetails("/dashboard.xhtml", null, null));
@@ -84,4 +89,30 @@ public class NavigationBean {
 	public void setSessionModel(SessionModel sessionModel) {
 		this.sessionModel = sessionModel;
 	}
+
+	/**
+	 * @return the progressPage
+	 */
+	public boolean getProgressPage() {
+		System.out.println("Current page is " + getSessionModel().getContent());
+		if (getSessionModel().getContent().contains("myProgress.xhtml"))
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
+
+	/**
+	 * @param progressPage the progressPage to set
+	 */
+	public void setProgressPage(boolean progressPage) {
+		this.progressPage = progressPage;
+	}
+
+	
+	
+	
 }
