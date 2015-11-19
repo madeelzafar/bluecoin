@@ -7,6 +7,7 @@ import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
+import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 
 import org.primefaces.event.SelectEvent;
@@ -27,6 +28,7 @@ import au.com.ibm.bluecoin.web.forms.LoginForm;
 import au.com.ibm.bluecoin.web.forms.TrophyBean;
 
 @ManagedBean
+@SessionScoped
 public class UserRewardForm extends AbstractMaintenanceForm<String, UserReward> {
 
 	private static final long serialVersionUID = 8158434638931310723L;
@@ -35,6 +37,15 @@ public class UserRewardForm extends AbstractMaintenanceForm<String, UserReward> 
 
 	@EJB
 	private IUserRewardSvc userRewardSvc;
+	
+	public IUserRewardSvc getUserRewardSvc() {
+		return userRewardSvc;
+	}
+
+	public void setUserSvc(IUserRewardSvc userRewardSvc) {
+		this.userRewardSvc = userRewardSvc;
+	}
+	
 	
 	
 	@ManagedProperty(value="#{trophyBean}")
@@ -73,19 +84,6 @@ public class UserRewardForm extends AbstractMaintenanceForm<String, UserReward> 
 		this.loginForm = loginForm;
 	}
 
-	@PostConstruct
-	public void init() {
-	
-		try
-		{
-		
-			userRewards=userRewardSvc.getDao().getAllRewards();
-		}
-		catch(Exception ex)
-		{
-			ex.printStackTrace();
-		}
-	}
 	
 	private List<UserReward> userRewards;
 	
@@ -138,7 +136,8 @@ public class UserRewardForm extends AbstractMaintenanceForm<String, UserReward> 
 	 */
 	public List<UserReward> getUserRewards() {
 		
-		userRewards=userRewardSvc.getDao().getRewardsByUser(getLoginForm().getUserName());
+		//System.out.println("Getting user rewards from the database....");
+		//userRewards=userRewardSvc.getDao().getRewardsByUser(getLoginForm().getUserName());
 		return userRewards;
 	}
 

@@ -1,5 +1,7 @@
 package au.com.ibm.bluecoin.web.forms;
 
+import java.util.List;
+
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 
@@ -7,8 +9,11 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import au.com.ibm.bluecoin.model.relational.AppUser;
+import au.com.ibm.bluecoin.model.relational.UserReward;
+import au.com.ibm.bluecoin.service.impl.UserRewardSvc;
 import au.com.ibm.bluecoin.utils.PageDetails;
 import au.com.ibm.bluecoin.web.forms.ui.UserForm;
+import au.com.ibm.bluecoin.web.forms.ui.UserRewardForm;
 
 /**
  * This bean is used to drive the application main menu system.
@@ -51,18 +56,38 @@ public class NavigationBean {
 		this.loginForm = loginForm;
 	}
 	
+
+	@ManagedProperty(value="#{userRewardForm}")
+	private UserRewardForm userRewardForm;
+
+	/**
+	 * @return the useRewardForm
+	 */
+	public UserRewardForm getUserRewardForm() {
+		return userRewardForm;
+	}
+
+	/**
+	 * @param useRewardForm to set
+	 */
+	public void setUserRewardForm(UserRewardForm userRewardForm) {
+		this.userRewardForm = userRewardForm;
+	}
+	
+	
+	
 	@ManagedProperty(value="#{userForm}")
 	private UserForm userForm;
 
 	/**
-	 * @return the loginForm
+	 * @return the userForm
 	 */
 	public UserForm getUserForm() {
 		return userForm;
 	}
 
 	/**
-	 * @param loginForm the userForm to set
+	 * @param userForm to set
 	 */
 	public void setUserForm(UserForm userForm) {
 		this.userForm = userForm;
@@ -104,7 +129,18 @@ public class NavigationBean {
 	
 	public void viewRewards() {
 		LOGGER.info("View Rewards");
+		try
+		{
+			
+		List<UserReward> rewards = getUserRewardForm().getUserRewardSvc().getDao().getRewardsByUser(getLoginForm().getUserName());
+		getUserRewardForm().setUserRewards(rewards);
 		getSessionModel().setContent("/ui/rewardList.xhtml");
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+		
 	}
 	
 	
@@ -151,7 +187,6 @@ public class NavigationBean {
 	 * @return the progressPage
 	 */
 	public boolean getProgressPage() {
-		System.out.println("Current page is " + getSessionModel().getContent());
 		String currentPage = getSessionModel().getContent();
 		
 		if (currentPage.contains("myProgress.xhtml")  || currentPage.contains("send.xhtml")|| currentPage.contains("rewardList.xhtml")|| currentPage.contains("trophyCase.xhtml") || currentPage.contains("viewTrophy.xhtml") || currentPage.contains("teamLadder.xhtml"))
