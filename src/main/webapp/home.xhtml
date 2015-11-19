@@ -19,8 +19,18 @@
 	    		<div class="Card">
 	                <div class="CardTopic"> 
 	                    <div class="EmptyBox10 ShowOnMobile"/>
-	                    Welcome ${loginForm.userName}! <i class="fa fa-smile-o Fs40 Fleft MarRight10"/><br/>
-	                    <span class="CardSubTopic">Bluecoins you can send.</span> 
+	                    <table>
+	                    <tr>
+	                    <td>
+	                    <h:graphicImage value="../../resources/images/blueCoin.gif" width="64" height="64"/>
+	                    </td>
+	                    <td>
+	                     Welcome ${loginForm.userName}! <i class="Fs40 Fleft MarRight10"/><br/>
+	                    <span class="CardSubTopic">Your reward menu</span> 
+	                    </td>
+	                    </tr>
+	                    </table>
+	                   
 	                </div>
 	                <div class="Separator"/>
 	                
@@ -45,7 +55,7 @@
 				    	  				<p:row>
 				    	
 				    	   					<p:column>	<div class="EmptyBox20 ShowOnMobile"></div>
-                        						<p:commandButton value="Blue Coins" icon="fa fa-lock" styleClass="Fs20 FontAdamantiumBold BlueButton" style="width:100%;height:50px" ajax="true" action="#{navigationBean.send}" process="@form" update="mainContent, form"/>
+                        						<p:commandButton value="Blue Coins" image="../../resources/images/bluecoins.jpg" styleClass="Fs20 FontAdamantiumBold BlueButton" style="width:100%;height:50px" ajax="true" action="#{navigationBean.send}" process="@form" update="mainContent, form"/>
 											</p:column>
 				    	  			</p:row>
                             

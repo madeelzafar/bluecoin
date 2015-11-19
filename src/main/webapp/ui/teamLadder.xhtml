@@ -9,7 +9,6 @@
 		
 		<div class="Container100 Responsive100">
 			<div class="ContainerIndent">
-				<div class="Card ShadowEffect">
 						<h2 class="BigTopic">
 							<i class="fa fa-users MarRight10"></i> #{teamLadderForm.viewOneTitle}
 						</h2>
@@ -18,15 +17,15 @@
 						value="#{teamLadderForm.teamLadder}"
 						style="font-size:small">
 
-						<p:column headerText="Rank" priority="1">
-							<h:outputText value="  #{team.rank}" />
+						<p:column headerText="#" priority="1">
+							<h:outputText value=" #{team.rank}" />
 						</p:column>
 						<p:column headerText="Team" priority="1">
 							<h:outputText value="#{team.team}" />
 						</p:column>
 				
 				
-						<p:column headerText="Total" priority="1">
+						<p:column headerText="Coins" priority="1">
 							<h:outputText value="#{team.totalAmount}" />
 						</p:column>
 				
@@ -34,8 +33,7 @@
 					<br/>
 				</div>
 			</div>
-		</div>
-
+		
 	
 	</h:form>
 
