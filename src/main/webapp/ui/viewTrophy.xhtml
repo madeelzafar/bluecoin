@@ -22,14 +22,14 @@
 				    		
 									<div style='text-align:center'>
 
-											<span style='font-weight:normal;font-size:16.0pt'>Congratulations #{trophyBean.userReward.recepient.login}!</span>
-											<p><span style='font-weight:normal;font-size:12.0pt'>You have received #{trophyBean.userReward.rewardAmount} blue coins from #{trophyBean.userReward.sender.login} for:</span></p>
+											<div class="CardTopic">Congratulations #{trophyBean.userReward.recepient.login}!</div>
+											<p><span style='color:#0057b3;font-weight:normal;font-size:12.0pt'>You have received #{trophyBean.userReward.rewardAmount} blue coins from #{trophyBean.userReward.sender.login} for:</span></p>
 
-											<div class="CardTopic">#{trophyBean.rewardName}</div>
+											<p><span style='color:#004c99;font-weight:bold;font-size:18.0pt'>#{trophyBean.rewardName}</span></p>
 											
 											<h:graphicImage value="../../resources/images/#{trophyBean.userReward.rewardType}.gif" width="154" height="200" />
 
-											<p><span style='font-weight:normal;'>#{trophyBean.userReward.rewardMessage}</span></p>
+											<p><span style='color:#0057b3;font-weight:normal;'>#{trophyBean.userReward.rewardMessage}</span></p>
 									</div>
 
 				    			<p:panelGrid styleClass="noBorderGrid" style="margin: 0 auto; border: none !important; padding: 4px">

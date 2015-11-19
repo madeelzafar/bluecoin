@@ -39,61 +39,61 @@ public class RewardManager {
         
         
     	item = new RewardItem();
-    	item.setName("Dedication to client's success");
+    	item.setName("Dedication To Client's Success");
     	item.setValue("ClientSuccess");
     	item.setPoints("30");
     	rewardItems.add(item);	
     	
     	
     	item = new RewardItem();
-    	item.setName("- Put the client first");
+    	item.setName("- Put The Client First");
     	item.setValue("ClientFirst");
     	item.setPoints("10");
     	rewardItems.add(item);	
     	
     	
     	item = new RewardItem();
-    	item.setName("- Listen for need, envision the future");
+    	item.setName("- Listen For Need, Envision The Future");
     	item.setValue("Listen");
     	item.setPoints("10");
     	rewardItems.add(item);	
     	
     
     	item = new RewardItem();
-    	item.setName("- Share experties");
+    	item.setName("- Share Experties");
     	item.setValue("ShareExperties");
     	item.setPoints("10");
     	rewardItems.add(item);	
     	
     	item = new RewardItem();
-    	item.setName("Innovation that matters");
+    	item.setName("Innovation That Matters");
     	item.setValue("Innovation");
     	item.setPoints("30");
     	rewardItems.add(item);	
     	
     	
     	item = new RewardItem();
-    	item.setName("- Restlessly reinvent");
+    	item.setName("- Restlessly Reinvent");
     	item.setValue("Reinvent");
     	item.setPoints("10");
     	rewardItems.add(item);	
     	
     
     	item = new RewardItem();
-    	item.setName("- Dare to create orignal ideas");
+    	item.setName("- Dare to Create Orignal Ideas");
     	item.setValue("CreateOrignal");
     	item.setPoints("10");
     	rewardItems.add(item);	
     	
     	item = new RewardItem();
-    	item.setName("- Wild ducks");
+    	item.setName("- Treasure Wild Ducks");
     	item.setValue("WildDucks");
     	item.setPoints("10");
     	rewardItems.add(item);	
     	
     	
     	item = new RewardItem();
-    	item.setName("Trust in all relationships");
+    	item.setName("Trust in All Relationships");
     	item.setValue("Trust");
     	item.setPoints("30");
     	rewardItems.add(item);	
@@ -106,13 +106,13 @@ public class RewardManager {
     	rewardItems.add(item);	
     	
     	item = new RewardItem();
-    	item.setName("- Unite to get it done now");
+    	item.setName("- Unite to Get it Done Now");
     	item.setValue("Unite");
     	item.setPoints("10");
     	rewardItems.add(item);	
     	
     	item = new RewardItem();
-    	item.setName("- Show personal interest");
+    	item.setName("- Show Personal Interest");
     	item.setValue("PersonalInterest");
     	item.setPoints("10");
     	rewardItems.add(item);	
