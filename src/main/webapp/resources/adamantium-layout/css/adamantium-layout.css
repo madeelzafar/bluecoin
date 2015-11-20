@@ -418,6 +418,21 @@ body {
   vertical-align: top;
   padding: 90px 70px;
 }
+
+.CardUnPadded {
+  display: block;
+  background-color: #ffffff;
+  border-radius: 2px;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  font-family: 'latoregular', sans-serif;
+  color: #666f77;
+  border: solid 1px #e0e0e0;
+  text-align: center;
+  
+}
+
+
 .Card {
   padding: 30px;
   display: block;
@@ -429,6 +444,9 @@ body {
   color: #666f77;
   border: solid 1px #e0e0e0;
 }
+
+
+
 .CardTopic {
   font-size: 20px;
   color: #439fe0;
