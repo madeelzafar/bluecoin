@@ -22,7 +22,7 @@
 	                    <table>
 	                    <tr>
 	                    <td>
-	                    <h:graphicImage value="../../resources/images/blueCoin.gif" width="64" height="64"/>
+						<h:graphicImage library="custom" name="images/blueCoin.gif" width="64" height="64" alt="BlueCoin Logo" />
 	                    </td>
 	                    <td>
 	                     Welcome ${loginForm.userName}! <i class="Fs40 Fleft MarRight10"/><br/>
@@ -47,7 +47,7 @@
 				    	   					<p:column>	<div class="EmptyBox20 ShowOnMobile"></div>
                         					
                         					<p:commandLink ajax="true">
-    											<h:graphicImage value="../../resources/images/CashAwards.png" style="max-width:220px;" />
+    											<h:graphicImage library="custom" name="images/CashAwards.png" style="max-width:220px;" alt="Cash Awards" />
 											</p:commandLink>
 											</p:column>
 					    	  			</p:row>
@@ -55,8 +55,8 @@
 				    	   					<p:column>	<div class="EmptyBox20 ShowOnMobile"></div>
                         					
                         					<p:commandLink ajax="true">
-    											<h:graphicImage value="../../resources/images/TeamAwards.png" style="max-width:220px;" />
-											</p:commandLink>
+    											<h:graphicImage library="custom" name="images/TeamAwards.png" style="max-width:220px;" alt="Team Awards" />
+    										</p:commandLink>
 											</p:column>
 					    	  			</p:row>
                             						    	  				
@@ -64,8 +64,8 @@
 				    	   					<p:column>	<div class="EmptyBox20 ShowOnMobile"></div>
                         					
                         					<p:commandLink ajax="true">
-    											<h:graphicImage value="../../resources/images/OneTeam.png" style="max-width:220px;" />
-											</p:commandLink>
+    											<h:graphicImage library="custom" name="images/OneTeam.png" style="max-width:220px;" alt="One Team" />
+    										</p:commandLink>
 											</p:column>
 					    	  			</p:row>
 				    	  				
@@ -79,8 +79,8 @@
 				    	   					<p:column>	<div class="EmptyBox20 ShowOnMobile"></div>
                         					
                         					<p:commandLink ajax="true" action="#{navigationBean.viewProgress}" process="@form" update="mainContent, form, topMenu">
-    											<h:graphicImage value="../../resources/images/bluecoins.png" style="max-width:220px;" />
-											</p:commandLink>
+    											<h:graphicImage library="custom" name="images/bluecoins.png" style="max-width:220px;" alt="Blue Coins" />
+    										</p:commandLink>
 											</p:column>
 					    	  			</p:row>
                             

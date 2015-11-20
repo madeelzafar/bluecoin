@@ -23,35 +23,37 @@
 										<p:row>
 				    	   					<p:column>
 											<p:commandLink ajax="true" action="#{navigationBean.home}" update="mainContent, topMenu" rendered="#{!navigationBean.homePage}">
-    											<h:graphicImage value="../../resources/images/home.png" style="max-width:220px;" />
-											</p:commandLink>
+    											<h:graphicImage library="custom" name="images/home.png" width="48" height="48" alt="Home" />
+	               						</p:commandLink>
 											</p:column>
 											<p:column>
 											
 											<p:commandLink ajax="true" action="#{navigationBean.viewProgress}" update="mainContent, topMenu" rendered="#{navigationBean.progressPage}">
-    											<h:graphicImage value="../../resources/images/bluelogo.png" style="max-width:220px;" />
+    											<h:graphicImage library="custom" name="images/bluelogo.png" width="48" height="48" alt="Blue Logo" />
 											</p:commandLink>
 				    	   					
 											<p:commandLink ajax="true" action="#{navigationBean.send}" update="mainContent, topMenu" rendered="#{navigationBean.progressPage}">
-    											<h:graphicImage value="../../resources/images/givecoins_grey.png" style="max-width:220px;" />
+    											<h:graphicImage library="custom" name="images/givecoins_grey.png" width="48" height="48" alt="Send Coins" />
 											</p:commandLink>
 											
 											</p:column>
 											<p:column>
 				    	   					<p:commandLink ajax="true" action="#{navigationBean.viewTeamLadder}" update="mainContent, topMenu" rendered="#{navigationBean.progressPage}">
-    											<h:graphicImage value="../../resources/images/ladder.png" style="max-width:220px;" />
-											</p:commandLink>
+    											<h:graphicImage library="custom" name="images/ladder.png" width="48" height="48" alt="Team Ladder" rendered="#{navigationBean.progressPage}" />
+    										</p:commandLink>
     									
 											<p:commandLink ajax="true" action="#{navigationBean.viewTrophyCase}" update="mainContent, topMenu" rendered="#{navigationBean.progressPage}">
-    											<h:graphicImage value="../../resources/images/trophies.png" style="max-width:220px;" rendered="#{navigationBean.progressPage}" />
+    											<h:graphicImage library="custom" name="images/trophies.png" width="48" height="48" alt="Trophy Case" rendered="#{navigationBean.progressPage}" />
+
 											</p:commandLink>
 											
 											<p:commandLink ajax="true" action="#{navigationBean.viewRewards}" update="mainContent, topMenu" rendered="#{navigationBean.progressPage}">
-    											<h:graphicImage value="../../resources/images/myawards.png" style="max-width:220px;" rendered="#{navigationBean.progressPage}" />
+    											<h:graphicImage library="custom" name="images/myawards.png" width="48" height="48" alt="My Awards" rendered="#{navigationBean.progressPage}" />
+
 											</p:commandLink>
 											
 											<p:commandLink ajax="true" action="#{navigationBean.viewUser}" update="mainContent, topMenu">
-    											<h:graphicImage value="../../resources/images/user.png" style="max-width:220px;"/>
+    											<h:graphicImage library="custom" name="images/user.png" width="48" height="48" alt="User" />
 											</p:commandLink>
 											
 											

@@ -27,15 +27,14 @@
 
 											<p><span style='color:#004c99;font-weight:bold;font-size:18.0pt'>#{trophyBean.rewardName}</span></p>
 											
-											<h:graphicImage value="../../resources/images/#{trophyBean.userReward.rewardType}.gif" width="154" height="200" />
-
+											<h:graphicImage library="custom" name="../../resources/images/#{trophyBean.userReward.rewardType}.gif" width="154" height="200" />
 											<p><span style='color:#0057b3;font-weight:normal;'>#{trophyBean.userReward.rewardMessage}</span></p>
 									</div>
 
 				    			<p:panelGrid styleClass="noBorderGrid" style="margin: 0 auto; border: none !important; padding: 4px">
 								
 									<p:row>
-										<p:column><p:commandButton value="OK" styleClass="CyanButton"  action="#{trophyBean.setAsRead}" update="mainContent,form"/>
+										<p:column><p:commandButton value="OK" styleClass="CyanButton"  action="#{trophyBean.setAsRead}" update="mainContent,form,topMenu"/>
 										</p:column>
 									</p:row>
 							
