@@ -9,10 +9,26 @@
 		
 		<div class="Container100 Responsive100">
 			
-			<div class="ContainerIndent ">
-						<h2 class="BigTopic">
-							<i class="fa MarRight10"></i> #{userRewardForm.viewOneTitle}
-						</h2>
+			<div class="Card">
+			
+					
+						
+						
+					 <div class="CardTopic"> 
+					<table>
+					<tr>
+					<td>
+					<h:graphicImage library="custom" name="images/#{loginForm.userName.replace(' ','_')}.png" width="48" height="48" rendered="#{loginForm.userImage}" />
+					</td>
+					<td>
+					#{userRewardForm.viewOneTitle} 
+					</td>
+					</tr>
+					
+					</table> 
+					 </div>
+								   <div class="Separator"/>
+						
 						
 						<div class="TexAlCenter">
 
@@ -41,8 +57,8 @@
 					<br/>
 				</div>
 				</div>
-				</div>
 		
+			</div>
 	
 	</h:form>
 

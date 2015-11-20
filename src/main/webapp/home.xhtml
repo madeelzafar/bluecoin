@@ -22,11 +22,14 @@
 	                    <table>
 	                    <tr>
 	                    <td>
-						<h:graphicImage library="custom" name="images/blueCoin.gif" width="64" height="64" alt="BlueCoin Logo" />
-	                    </td>
+			            </td>
 	                    <td>
 	                     Welcome ${loginForm.userName}! <i class="Fs40 Fleft MarRight10"/><br/>
 	                    <span class="CardSubTopic">Your reward menu</span> 
+	                    </td>
+	                    <td>
+	                    		<h:graphicImage library="custom" name="images/#{loginForm.userName.replace(' ','_')}.png" width="48" height="48"  rendered="#{loginForm.userImage}"   />
+										
 	                    </td>
 	                    </tr>
 	                    </table>

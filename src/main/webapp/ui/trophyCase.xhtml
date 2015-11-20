@@ -15,13 +15,28 @@
     <h:form id="form">
     
 	    <div class="Container100 Responsive100">    
-	    	<div class="ContainerIndent">
 	    		<div class="Card">
 	                
 	                <div class="Container100 Responsive100">
-				    	
 				    			
-				    			<p:panelGrid styleClass="noBorderGrid" style="border: none !important; padding: 4px">
+						<div class="CardTopic"> 
+							<table>
+							<tr>
+							<td>
+							<h:graphicImage library="custom" name="images/#{loginForm.userName.replace(' ','_')}.png" width="48" height="48" rendered="#{loginForm.userImage}"  />
+							</td>
+							<td>
+							Trophy Case
+							</td>
+							</tr>
+							
+							</table> 
+						</div>
+					 
+				   <div class="Separator"/>
+				    			
+				    			
+				    			<p:panelGrid style="width:100%;border:1px solid #DCDCDC;border-collapse: collapse">
 									
 									<p:row>
 										<p:column>
@@ -36,7 +51,6 @@
 
 	    		</div>
 	    	</div>
-	    </div>
 	        
     </h:form>
 

@@ -16,7 +16,6 @@ public class CacheFilter implements Filter {
 
 	@Override
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
-		System.out.println("Filter called: " + ((HttpServletRequest)request).getRequestURI());
 		HttpServletResponse httpResponse = (HttpServletResponse) response;
 		String uri = ((HttpServletRequest)request).getRequestURI();
 		if (uri.contains(".js") || uri.contains(".css") || uri.contains(".svg") || uri.contains(".woff") || uri.contains(".png") ||  uri.contains(".jpg") ||  uri.contains(".gif")) {

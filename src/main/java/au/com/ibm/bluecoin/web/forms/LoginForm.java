@@ -10,6 +10,7 @@ import java.util.Set;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
+import javax.faces.application.Resource;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
@@ -47,6 +48,10 @@ public class LoginForm extends AbstractMaintenanceForm<String, AppUser> {
 
 	private String loggedUser;
 	private String loggedRole;
+	
+	private boolean userImage;
+	
+	
 	
 	public static final String DEFAULT_USER = "admin";
 
@@ -321,6 +326,37 @@ public class LoginForm extends AbstractMaintenanceForm<String, AppUser> {
 
 	public void setLoggedRole(String loggedRole) {
 		this.loggedRole = loggedRole;
+	}
+
+	/**
+	 * @return the userImage
+	 */
+	public boolean getUserImage() {
+		
+		System.out.println("Getting user image....");
+		Resource resource=null;
+		try
+		{
+			String image = "images/" + getUserName().replace(" ", "_")+".png";
+			System.out.println("Checking for image " + image );
+			resource=FacesContext.getCurrentInstance().getApplication().getResourceHandler().createResource(image, "custom");
+		}
+		catch (Exception ex)
+		{
+			ex.printStackTrace();
+		}
+		
+		if (resource == null)
+			return false;
+		else
+			return true;
+	}
+
+	/**
+	 * @param userImage the userImage to set
+	 */
+	public void setUserImage(boolean userImage) {
+		this.userImage = userImage;
 	}
 
 }
