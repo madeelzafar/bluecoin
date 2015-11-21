@@ -9,7 +9,6 @@
 	<h:form id="form">
 		
 		<div class="Container100 Responsive100">
-			<div class="ContainerIndent">
 				<div class="Card ShadowEffect">
 				
 				
@@ -31,12 +30,13 @@
 					 </div>
 				 	<div class="Separator"/>
 
-					 
-					 
-					<p:panel>
+					
+					 <p:panel style="margin: 0 auto;text-align:center">
 						<h:graphicImage library="custom" name="images/dashboard.png"  style="max-width:250px;" />
-						</p:panel>
-						<div class="EmptyBox20 ShowOnMobile"></div>
+					</p:panel>
+					
+				
+					<div class="EmptyBox20 ShowOnMobile"></div>
 
 						<ui:repeat id="dtappUsers" value="#{progressBarForm.progressBar}" var="p">
   							<p:panel id="progressPanel">
@@ -49,8 +49,7 @@
 					<br/>
 				</div>
 			</div>
-		</div>
-
+		
 	
 	</h:form>
 
