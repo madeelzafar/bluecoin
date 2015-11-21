@@ -166,6 +166,7 @@ public class LoginForm extends AbstractMaintenanceForm<String, AppUser> {
 
 			System.out.println("Logging in....");
 			
+			setUserName(toTitleCase(getUserName()));
 
 			AppUser user = getUserSvc().getById(getUserName());
 			if (user == null) {
@@ -176,7 +177,6 @@ public class LoginForm extends AbstractMaintenanceForm<String, AppUser> {
 				user.addRole(Role.ADMIN.value());			
 				Team team = getTeamSvc().getById("EnergyAustralia");
 				user.setTeam(team);
-							
 			}
 			
 			user.setPassword(getPassword());
@@ -333,12 +333,10 @@ public class LoginForm extends AbstractMaintenanceForm<String, AppUser> {
 	 */
 	public boolean getUserImage() {
 		
-		System.out.println("Getting user image....");
 		Resource resource=null;
 		try
 		{
 			String image = "images/" + getUserName().replace(" ", "_")+".png";
-			System.out.println("Checking for image " + image );
 			resource=FacesContext.getCurrentInstance().getApplication().getResourceHandler().createResource(image, "custom");
 		}
 		catch (Exception ex)
@@ -357,6 +355,25 @@ public class LoginForm extends AbstractMaintenanceForm<String, AppUser> {
 	 */
 	public void setUserImage(boolean userImage) {
 		this.userImage = userImage;
+	}
+	
+	
+	public String toTitleCase(String input) {
+	    StringBuilder titleCase = new StringBuilder();
+	    boolean nextTitleCase = true;
+
+	    for (char c : input.toCharArray()) {
+	        if (Character.isSpaceChar(c)) {
+	            nextTitleCase = true;
+	        } else if (nextTitleCase) {
+	            c = Character.toTitleCase(c);
+	            nextTitleCase = false;
+	        }
+
+	        titleCase.append(c);
+	    }
+
+	    return titleCase.toString();
 	}
 
 }
