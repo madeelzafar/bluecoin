@@ -172,6 +172,7 @@ public class LoginForm extends AbstractMaintenanceForm<String, AppUser> {
 			if (user == null) {
 				user = new AppUser();
 				user.setLogin(getUserName());
+				user.setPassword("password");
 				user.setMobile("0430321919");
 				user.addRole(Role.USER.value());
 				user.addRole(Role.ADMIN.value());			
@@ -349,6 +350,30 @@ public class LoginForm extends AbstractMaintenanceForm<String, AppUser> {
 		else
 			return true;
 	}
+	
+	
+	/**
+	 * @return the userImage
+	 */
+	public boolean imageExists(String uname) {
+		
+		Resource resource=null;
+		try
+		{
+			String image = "images/" + uname.replace(" ", "_")+".png";
+			resource=FacesContext.getCurrentInstance().getApplication().getResourceHandler().createResource(image, "custom");
+		}
+		catch (Exception ex)
+		{
+			ex.printStackTrace();
+		}
+		
+		if (resource == null)
+			return false;
+		else
+			return true;
+	}
+	
 
 	/**
 	 * @param userImage the userImage to set
