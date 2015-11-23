@@ -29,6 +29,17 @@
 											
 											<h:graphicImage library="custom" name="images/#{trophyBean.userReward.rewardType}.gif" width="154" height="200" />
 											<p><span style='color:#0057b3;font-weight:normal;'>#{trophyBean.userReward.rewardMessage}</span></p>
+											<p><span style='color:#0057b3;font-weight:normal;'>Awarded received on: <h:outputText value="#{trophyBean.userReward.rewardDate}">
+							  <f:convertDateTime type="date" pattern="dd-MM-yy"/>
+							  </h:outputText></span></p>
+											
+											
+											
+												
+						<p:column headerText="Date" priority="1">
+							
+						</p:column>
+											
 									</div>
 
 				    			<p:panelGrid styleClass="noBorderGrid" style="margin: 0 auto; border: none !important; padding: 4px">

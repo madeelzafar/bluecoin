@@ -446,6 +446,20 @@ body {
 }
 
 
+.CardPadding10 {
+  padding: 10px;
+  display: block;
+  background-color: #ffffff;
+  border-radius: 2px;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  font-family: 'latoregular', sans-serif;
+  color: #666f77;
+  border: solid 1px #e0e0e0;
+}
+
+
+
 
 .CardTopic {
   font-size: 20px;
@@ -1582,4 +1596,3 @@ li {
 /* topbar menu */
 /* main menu */
 /* for mobile devices */
-

@@ -14,8 +14,8 @@
 				
 						
 						
-					 <div class="CardTopic"> 
-					<table>
+					<div class="CardTopic" > 
+					<table >
 					<tr>
 					<td>
 					<h:graphicImage library="custom" name="images/#{loginForm.userName.replace(' ','_')}.png" width="48" height="48" rendered="#{loginForm.userImage}"/>
@@ -28,8 +28,7 @@
 					</table> 
 					 </div>
 				
-					<div class="Separator"/>
-					
+						<div class="EmptyBox20 ShowOnMobile"></div>
 					
 						
 				
@@ -43,18 +42,33 @@
 							
 				    			</p:panelGrid>
 	
+			
+						<div class="EmptyBox20 ShowOnMobile"></div>
 						
-						<!-- 
+						<div class="CardTopic"> 
+						Individual Ranking
+						</div>
+						
+						<div class="EmptyBox20 ShowOnMobile"></div>
+						
+						
 							<div class="TexAlCenter">
 
 					<p:dataTable id="dtappUsers" var="team"
 						value="#{teamLadderForm.teamLadder}"
-						style="font-size:small">
+						styleClass="adeel">
+						
+						<p:column priority="1" style="width:35px">
+							<h:graphicImage library="custom" name="images/#{team.team.replace(' ','_')}.png" width="32" height="32" rendered="#{loginForm.imageExists(team.team)}"  />
+							<h:graphicImage library="custom" name="images/default_user.png" width="32" height="32" rendered="#{!loginForm.imageExists(team.team)}"  />
 
-						<p:column headerText="#" priority="1">
+						</p:column> 
+						
+
+						<p:column headerText="Rank" priority="1" style="width:60px"> 
 							<h:outputText value=" #{team.rank}" />
 						</p:column>
-						<p:column headerText="Team" priority="1">
+						<p:column headerText="Name" priority="1" style="width:120px">
 							<h:outputText value="#{team.team}" />
 						</p:column>
 				
@@ -67,8 +81,7 @@
 						
 					<br/>
 				</div>
-						-->
-			
+						
 			</div>
 
 			

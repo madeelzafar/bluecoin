@@ -9,12 +9,12 @@
 		
 		<div class="Container100 Responsive100">
 			
-			<div class="Card">
+			<div class="CardUnPadded">
 			
 					
 						
 						
-					 <div class="CardTopic"> 
+				<div class="CardTopic"> 
 					<table>
 					<tr>
 					<td>
@@ -26,39 +26,49 @@
 					</tr>
 					
 					</table> 
-					 </div>
-								   <div class="Separator"/>
+					</div>
+					
+					<div class="EmptyBox10 ShowOnMobile"></div>
+					
 						
 						
-						<div class="TexAlCenter">
-
-					<p:dataTable id="dtappUsers" var="usr"  value="#{userRewardForm.userRewards}"	
-					style="font-size:small" selectionMode="single" rowKey="#{usr.id}" >
+			<div class="TexAlCenter">
+					<p:dataTable id="dtappUsers" var="usr"  value="#{userRewardForm.userRewards}" styleClass="adeel" selectionMode="single" rowKey="#{usr.id}" >
 						
 						<p:ajax event="rowSelect" listener="#{userRewardForm.onRowSelect}" />
 
+						<!-- 
+						<p:column headerText="Reward" priority="1">
+							<h:graphicImage library="custom" name="images/#{usr.rewardType}.gif" width="32" height="32"   />
+						</p:column> -->
+						
 						<p:column headerText="From" priority="1">
-							<h:outputText value="#{usr.sender.login}" />
-						</p:column>
+							<h:graphicImage library="custom" name="images/#{usr.sender.login.replace(' ','_')}.png" width="32" height="32" rendered="#{loginForm.imageExists(usr.sender.login)}"  />
+							<h:outputText value="#{usr.sender.login}" rendered="#{!loginForm.imageExists(usr.sender.login)}"  />
+						</p:column> 
+						
 						
 						<p:column headerText="Coins" priority="1">
 							<h:outputText value="#{usr.rewardAmount}" />
 						</p:column>
-						<p:column headerText="Reward" priority="1">
-							<h:outputText value="#{usr.rewardType}" />
-						</p:column>
+					
 						<p:column headerText="Date" priority="1">
-							<h:outputText value="#{usr.rewardDate}">
-							  <f:convertDateTime type="date" pattern="dd-MM-yy"/>
+							<h:outputText value="#{trophyBean.userReward.rewardDate}">
+							<f:convertDateTime type="date" pattern="dd-MM-yy"/>
 							  </h:outputText>
 						</p:column>
+					
 				
 						</p:dataTable>
 					<br/>
 				</div>
+				
+				
 				</div>
+				
+		</div>		
+			
 		
-			</div>
 	
 	</h:form>
 
