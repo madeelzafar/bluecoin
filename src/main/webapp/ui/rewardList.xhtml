@@ -42,7 +42,7 @@
 							<h:graphicImage library="custom" name="images/#{usr.rewardType}.gif" width="32" height="32"   />
 						</p:column> -->
 						
-						<p:column headerText="From" priority="1">
+						<p:column headerText="From" priority="1" style="width:50px">
 							<h:graphicImage library="custom" name="images/#{usr.sender.login.replace(' ','_')}.png" width="32" height="32" rendered="#{loginForm.imageExists(usr.sender.login)}"  />
 							<h:outputText value="#{usr.sender.login}" rendered="#{!loginForm.imageExists(usr.sender.login)}"  />
 						</p:column> 
@@ -50,6 +50,10 @@
 						
 						<p:column headerText="Coins" priority="1">
 							<h:outputText value="#{usr.rewardAmount}" />
+						</p:column>
+					
+						<p:column headerText="Type" priority="1">
+							<h:outputText value="#{usr.rewardType}" />
 						</p:column>
 					
 						<p:column headerText="Date" priority="1">
