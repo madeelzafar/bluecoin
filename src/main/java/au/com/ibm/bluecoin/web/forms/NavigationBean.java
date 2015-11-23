@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
+import javax.faces.context.FacesContext;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -163,6 +164,19 @@ public class NavigationBean {
 	public void viewProgress() {
 		LOGGER.info("View progress");
 		getSessionModel().setContent("/ui/myProgress.xhtml");
+	}
+	
+	
+	public void logout() {
+		LOGGER.info("logout");
+		try
+		{
+			FacesContext.getCurrentInstance().getExternalContext().redirect("login.xhtml");
+		}
+		catch (Exception ex)
+		{
+			ex.printStackTrace();
+		}
 	}
 	
 	

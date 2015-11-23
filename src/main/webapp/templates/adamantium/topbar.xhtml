@@ -40,7 +40,7 @@
 	               						</p:commandLink>
 											</p:column>
 										
-				    	   						        									<p:column>
+				    	   				<p:column>
 				    	   					
 											<p:commandLink ajax="true" action="#{navigationBean.send}" update="mainContent, topMenu" rendered="#{navigationBean.progressPage}">
     											<h:graphicImage library="custom" name="images/givecoins_grey.png" width="40" height="40" alt="Send Coins" />
@@ -63,7 +63,11 @@
 											</p:commandLink>
 											
 											<p:commandLink ajax="true" action="#{navigationBean.viewUser}" update="mainContent, topMenu">
-    											<h:graphicImage library="custom" name="images/user.png" width="36" height="36" alt="User" />
+    											<h:graphicImage library="custom" name="images/user.png" width="36" height="36" alt="User" rendered="#{navigationBean.homePage}" />
+											</p:commandLink>
+											
+												<p:commandLink ajax="true" action="#{navigationBean.logout}" update="mainContent, topMenu">
+    											<h:graphicImage library="custom" name="images/logout.png" width="36" height="36" alt="User"  rendered="#{navigationBean.homePage}" />
 											</p:commandLink>
 											
 											
