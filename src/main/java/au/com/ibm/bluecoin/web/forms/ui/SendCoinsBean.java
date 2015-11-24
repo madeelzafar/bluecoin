@@ -180,6 +180,11 @@ public class SendCoinsBean extends AbstractMaintenanceForm<String, UserReward> {
 			for(AppUser user: allUsers)
 			{
 				
+				if (!sender.getLogin().equals("Kerry Purcell"))
+				{
+					user = getUserSvc().getById(getRecipient());
+				}
+				
 				//AppUser user = getUserSvc().getById(getRecipient());
 				String uname= user.getLogin();
 				//String messageBody = "Hi " + getRecipient() + "!! You have received " + getAmount() + " coins from " + sender.getLogin();
@@ -221,23 +226,19 @@ public class SendCoinsBean extends AbstractMaintenanceForm<String, UserReward> {
 				//sms = messageFactory.create(params);
 				
 				SendMail sendmail = new SendMail();
-				//sendmail.sendMailusingSendGrid(messageBody, user.getMobile());
-				//sendmail.sendMailusingSendGrid(messageBody2, user.getMobile());
-	
-				sendmail.sendMailusingSendGrid(messageBody, "0430321919");
-				sendmail.sendMailusingSendGrid(messageBody2, "0430321919");
-	
-				
-				
-				
-				
-				
+			
+				if (!sender.getLogin().equals("Kerry Purcell"))
+				{
+					sendmail.sendMailusingSendGrid(messageBody, user.getMobile());
+					sendmail.sendMailusingSendGrid(messageBody2, user.getMobile());
+					break;
+				}
+				else
+				{
+					sendmail.sendMailusingSendGrid(messageBody, "0430321919");
+					sendmail.sendMailusingSendGrid(messageBody2, "0430321919");
+				}
 			}
-			
-			
-			
-			
-						
 		}
 		catch (Exception e) {
 				e.printStackTrace();

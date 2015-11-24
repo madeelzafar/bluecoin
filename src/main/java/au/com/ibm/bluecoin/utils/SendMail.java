@@ -7,6 +7,7 @@ import java.util.Set;
 
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
+import javax.ejb.Asynchronous;
 import javax.mail.Message;
 import javax.mail.MessagingException;
 import javax.mail.PasswordAuthentication;
@@ -78,21 +79,19 @@ public class SendMail {
 	      }
 	}
 	
-	public void sendMailusingSendGrid(String message, String mobile)
+	
+   public void sendMailusingSendGrid(String message, String mobile)
 	{
 		
 		    
-		try{
-			
-			
+		try
+		{
 			String emailAddress = mobile + ".ibm01@e2m.hutch.com.au";
-		
-		SendGrid sendgrid = new SendGrid("uqNzTeIcyp", "YSDAeiFfbobF7557");
-
-		    SendGrid.Email email = new SendGrid.Email();
+			SendGrid sendgrid = new SendGrid("uqNzTeIcyp", "YSDAeiFfbobF7557");
+			SendGrid.Email email = new SendGrid.Email();
 
 		    email.addTo(emailAddress);
-		    email.setFrom("adeelzafar@gmail.com");
+		    email.setFrom("adeel.zafar@gmail.com");
 		    email.setSubject("..");
 		    email.setHtml(message);
 		    
