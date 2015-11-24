@@ -170,53 +170,74 @@ public class SendCoinsBean extends AbstractMaintenanceForm<String, UserReward> {
 	
 		TwilioRestClient client = new TwilioRestClient(accountSID, authToken);
 
-	
-	
 		SmsFactory messageFactory = client.getAccount().getSmsFactory();
 		try {
 			
-			
-			AppUser user = getUserSvc().getById(getRecipient());
-			AppUser sender = getUserSvc().getById(getLoginForm().getUserName()); 
-			String uname= user.getLogin();
-			System.out.println("uname before is "+ uname);
-			uname=uname.replaceAll(" ", "%20");
-			System.out.println("uname after is "+ uname);
-			String messageBody = "Hi " + getRecipient() + "!! You have received " + getAmount() + " coins from " + sender.getLogin();
-			String messageBody2 = "Check your rewards at http://bluecoin-poc.mybluemix.net/loginas.xhtml?uname="+uname;
-			LOGGER.info("Sending " + messageBody  + " " +   messageBody2);
-
-			
-					
-			Team team = getTeamSvc().getById("EnergyAustralia");
-			//user.setTeam(team);
-			
-			UserReward reward = new UserReward();
-			reward.setRewardDate(new Date());
-			reward.setRecepient(user);
-			reward.setSender(sender);
-			
-			reward.setRewardAmount(Integer.parseInt(getAmount()));
-			reward.setRewardMessage(getMessage());
-			reward.setTeam(user.getTeam());
-			reward.setRewardType(getSelectedReward());
-			
-			
-			getUserRewardSvc().create(reward);
 	
+			AppUser sender = getUserSvc().getById(getLoginForm().getUserName()); 
 			
-			// Build a filter for the SmsList
-			Map<String, String> params = new HashMap<String, String>();
-			// Update with your Twilio number 
-			//params.put("From", "+61439767507");
-			//params.put("Body", messageBody);
-			//params.put("To", user.getMobile());
-			//sms = messageFactory.create(params);
+			List<AppUser> allUsers = getUserSvc().getAll();
+			for(AppUser user: allUsers)
+			{
+				
+				//AppUser user = getUserSvc().getById(getRecipient());
+				String uname= user.getLogin();
+				//String messageBody = "Hi " + getRecipient() + "!! You have received " + getAmount() + " coins from " + sender.getLogin();
+				String messageBody = "Hi " + uname + "!! You have received " + getAmount() + " coins from " + sender.getLogin();
+	
+				
+				System.out.println("uname before is "+ uname);
+				uname=uname.replaceAll(" ", "%20");
+				System.out.println("uname after is "+ uname);
+	
+				String messageBody2 = "Check your rewards at http://bluecoin-poc.mybluemix.net/loginas.xhtml?uname="+uname;
+				LOGGER.info("Sending " + messageBody  + " " +   messageBody2);
+
+				
+						
+				Team team = getTeamSvc().getById("EnergyAustralia");
+				//user.setTeam(team);
+				
+				UserReward reward = new UserReward();
+				reward.setRewardDate(new Date());
+				reward.setRecepient(user);
+				reward.setSender(sender);
+				
+				reward.setRewardAmount(Integer.parseInt(getAmount()));
+				reward.setRewardMessage(getMessage());
+				reward.setTeam(user.getTeam());
+				reward.setRewardType(getSelectedReward());
+				
+				
+				getUserRewardSvc().create(reward);
+		
+				
+				// Build a filter for the SmsList
+				Map<String, String> params = new HashMap<String, String>();
+				// Update with your Twilio number 
+				//params.put("From", "+61439767507");
+				//params.put("Body", messageBody);
+				//params.put("To", user.getMobile());
+				//sms = messageFactory.create(params);
+				
+				SendMail sendmail = new SendMail();
+				//sendmail.sendMailusingSendGrid(messageBody, user.getMobile());
+				//sendmail.sendMailusingSendGrid(messageBody2, user.getMobile());
+	
+				sendmail.sendMailusingSendGrid(messageBody, "0430321919");
+				sendmail.sendMailusingSendGrid(messageBody2, "0430321919");
+	
+				
+				
+				
+				
+				
+			}
 			
-			SendMail sendmail = new SendMail();
-			sendmail.sendMailusingSendGrid(messageBody, user.getMobile());
-			sendmail.sendMailusingSendGrid(messageBody2, user.getMobile());
 			
+			
+			
+						
 		}
 		catch (Exception e) {
 				e.printStackTrace();
