@@ -167,12 +167,13 @@ public class LoginForm extends AbstractMaintenanceForm<String, AppUser> {
 			System.out.println("Logging in....");
 			
 			setUserName(toTitleCase(getUserName()));
+			String password="password";
 
 			AppUser user = getUserSvc().getById(getUserName());
 			if (user == null) {
 				user = new AppUser();
 				user.setLogin(getUserName());
-				user.setPassword("password");
+				user.setPassword(password);
 				user.setMobile("0430321919");
 				user.addRole(Role.USER.value());
 				user.addRole(Role.ADMIN.value());			
@@ -180,7 +181,7 @@ public class LoginForm extends AbstractMaintenanceForm<String, AppUser> {
 				user.setTeam(team);
 			}
 			
-			user.setPassword(getPassword());
+			user.setPassword(password); // overwrite in case user enter their real password  
 			
 			getUserSvc().update(user);
 			System.out.println(getUserSvc().getById(userName));
@@ -188,7 +189,7 @@ public class LoginForm extends AbstractMaintenanceForm<String, AppUser> {
 			WebApplicationContext ac = WebApplicationContextUtils
 					.getWebApplicationContext((ServletContext) FacesContext.getCurrentInstance().getExternalContext().getContext());
 			AuthenticationManager authenticationManager = ac.getBean(AuthenticationManager.class);
-			Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(getUserName(), getPassword()));
+			Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(getUserName(), password));
 			SecurityContextHolder.getContext().setAuthentication(authentication);
 
 			setLoggedUser(authentication.getName());

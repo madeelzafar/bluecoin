@@ -1,0 +1,69 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui">
+
+    <ui:define name="head">
+
+    </ui:define>
+    
+    <ui:define name="subheader">
+        Team
+    </ui:define>
+
+    <h:form id="form">
+    
+	    <div class="Container100 Responsive100">    
+	    		<div class="Card">
+	                
+	                <div class="Container100 Responsive100">
+				    			
+						<div class="CardTopic TexAlCenter"> 
+							The Team
+						</div>
+					 
+					    	<div class="EmptyBox10 ShowOnMobile"></div>
+
+				    	
+				    	<ui:repeat id="dtappUsers" value="#{creditView.developmentTeam}" var="usr">
+				    			<div class="CardPadding10">
+				    			<table style="width:100%">
+				    				<tr>
+								  		<td style="width:20%">
+							    				<h:graphicImage library="custom" name="images/#{usr.name.replace(' ','_')}.png"  width="48" height="48"/>
+							    		</td>
+							    		<td  style="width:60%">
+								    		<table style="width:100%">
+								    			<tr>
+									    			<td style="border-bottom: solid 1px #E0E0E0;">
+									    			<span class="CardTopicMini">#{usr.name}</span>
+									    			</td>
+								    			</tr>
+								    			<tr>
+									    			<td>
+									    			<span class="CardSubTopic">#{usr.designation}</span>
+								    				</td>
+								    			</tr>
+								    		</table>
+								   		</td>
+								   		<td  style="width:20%">
+								   			<h:graphicImage library="custom" name="images/Email.png" width="70px"/>
+								   		</td>
+					    			</tr>
+					    		</table>
+					    		</div>
+					    		<div class="EmptyBox5 ShowOnMobile"></div>
+					    		
+					    	
+					  		</ui:repeat>
+					  		
+
+	    		</div>
+	    	</div>
+	    	</div>
+	    	
+	        
+    </h:form>
+
+</ui:composition>

@@ -167,6 +167,12 @@ public class NavigationBean {
 	}
 	
 	
+	public void viewCredits() {
+		LOGGER.info("View credits");
+		getSessionModel().setContent("/ui/credits.xhtml");
+	}
+	
+	
 	public void logout() {
 		LOGGER.info("logout");
 		try
