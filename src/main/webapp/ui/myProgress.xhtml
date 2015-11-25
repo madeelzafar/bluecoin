@@ -37,14 +37,26 @@
 					</p:panel>
 					
 				
-					<div class="EmptyBox20 ShowOnMobile"></div>
+					<div class="EmptyBox20"></div>
 
 						<ui:repeat id="dtappUsers" value="#{progressBarForm.progressBar}" var="p">
-  							<p:panel id="progressPanel">
+  							<table  style="border: solid 1px #e0e0e0;">
+  							<tr>
+				    		<td style="width:100%">
+  							
+  							<p:panel id="progressPanel" style="border:0px solid">
 				    			<h:outputText value="#{p.reward.name}"/>
 				    			<p:progressBar id="progressbar" value="#{p.progress}" displayOnly="true"/>
 				    			<p:tooltip id="toolTipFade" for="progressPanel" value="#{p.currentPoints}/#{p.totalPoints} points accumulated" trackMouse="true"  />
-							  </p:panel>
+				    		  </p:panel>
+				    		 </td>
+				    			<td style="width:30px">
+				    			<h:graphicImage library="custom" name="images/trophy.png" width="24" height="24"/>
+				    			</td>
+				    			</tr>
+				    			</table>
+				    			<div class="EmptyBox5"></div>
+				    			
 						</ui:repeat>
 
 					<br/>

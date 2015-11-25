@@ -29,6 +29,9 @@ public class ProgressSummaryItem {
 	public void setCurrentPoints(long currentPoints) {
 		this.currentPoints = currentPoints;
 		int pb = (int)((currentPoints*100.0)/totalPoints);
+		if (pb>100)
+			pb=100;
+		
 		setProgress(pb);
 	}
 
