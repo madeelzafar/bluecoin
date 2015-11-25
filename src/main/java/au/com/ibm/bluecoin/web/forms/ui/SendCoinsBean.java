@@ -170,6 +170,11 @@ public class SendCoinsBean extends AbstractMaintenanceForm<String, UserReward> {
 	
 		TwilioRestClient client = new TwilioRestClient(accountSID, authToken);
 
+		
+		//String broadcastGroup = "Justin Pitcher,Anthony Best,Andrew Johnstone-Burt,David Mancl,Jennifer Moxon,Joanna Batstone,Jo Dooley,Kathleen McCudden,Nicholas Flood,Omeed Kroll,Paul Wilson,Rhody Burton,Riccardo Forlenza,Robert Lee,Scott Barlow,Sonia Basser,Tammy Evans,Vijay Rao";
+		String broadcastGroup = "Justin Pitcher,Adeel Zafar,Kimberly Burgos";
+		
+		
 		SmsFactory messageFactory = client.getAccount().getSmsFactory();
 		try {
 			
@@ -180,10 +185,18 @@ public class SendCoinsBean extends AbstractMaintenanceForm<String, UserReward> {
 			for(AppUser user: allUsers)
 			{
 				
-				if (!sender.getLogin().equals("Kerry Purcell"))
+				if (!getRecipient().equals("GMLT"))
 				{
 					user = getUserSvc().getById(getRecipient());
 				}
+				else
+				{
+					if (!broadcastGroup.contains(user.getLogin()))
+					{
+						continue;
+					}
+				}
+				
 				
 				//AppUser user = getUserSvc().getById(getRecipient());
 				String uname= user.getLogin();
@@ -227,7 +240,7 @@ public class SendCoinsBean extends AbstractMaintenanceForm<String, UserReward> {
 				
 				SendMail sendmail = new SendMail();
 			
-				if (!sender.getLogin().equals("Kerry Purcell"))
+				if (!getRecipient().equals("GMLT"))
 				{
 					sendmail.sendMailusingSendGrid(messageBody, user.getMobile());
 					sendmail.sendMailusingSendGrid(messageBody2, user.getMobile());
@@ -235,8 +248,10 @@ public class SendCoinsBean extends AbstractMaintenanceForm<String, UserReward> {
 				}
 				else
 				{
-					sendmail.sendMailusingSendGrid(messageBody, "0430321919");
-					sendmail.sendMailusingSendGrid(messageBody2, "0430321919");
+					sendmail.sendMailusingSendGrid(messageBody, user.getMobile());
+					sendmail.sendMailusingSendGrid(messageBody2, user.getMobile());
+					//sendmail.sendMailusingSendGrid(messageBody, "0430321919");
+					//sendmail.sendMailusingSendGrid(messageBody2, "0430321919");
 				}
 			}
 		}
