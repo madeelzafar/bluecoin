@@ -171,8 +171,8 @@ public class SendCoinsBean extends AbstractMaintenanceForm<String, UserReward> {
 		TwilioRestClient client = new TwilioRestClient(accountSID, authToken);
 
 		
-		//String broadcastGroup = "Justin Pitcher,Anthony Best,Andrew Johnstone-Burt,David Mancl,Jennifer Moxon,Joanna Batstone,Jo Dooley,Kathleen McCudden,Nicholas Flood,Omeed Kroll,Paul Wilson,Rhody Burton,Riccardo Forlenza,Robert Lee,Scott Barlow,Sonia Basser,Tammy Evans,Vijay Rao";
-		String broadcastGroup = "Justin Pitcher,Adeel Zafar,Kimberly Burgos";
+		String broadcastGroup = "Justin Pitcher,Anthony Best,Andrew Johnstone-Burt,David Mancl,Jennifer Moxon,Joanna Batstone,Jo Dooley,Kathleen McCudden,Nicholas Flood,Omeed Kroll,Paul Wilson,Rhody Burton,Riccardo Forlenza,Robert Lee,Scott Barlow,Sonia Basser,Tammy Evans,Vijay Rao,Kerry Purcell";
+		//String broadcastGroup = "Justin Pitcher,Adeel Zafar,Kimberly Burgos";
 		
 		
 		SmsFactory messageFactory = client.getAccount().getSmsFactory();
