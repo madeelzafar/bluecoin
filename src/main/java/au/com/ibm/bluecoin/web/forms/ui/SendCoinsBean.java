@@ -171,7 +171,8 @@ public class SendCoinsBean extends AbstractMaintenanceForm<String, UserReward> {
 		TwilioRestClient client = new TwilioRestClient(accountSID, authToken);
 
 		
-		String broadcastGroup = "Justin Pitcher,Anthony Best,Andrew Johnstone-Burt,David Mancl,Jennifer Moxon,Joanna Batstone,Jo Dooley,Kathleen McCudden,Nicholas Flood,Omeed Kroll,Paul Wilson,Rhody Burton,Riccardo Forlenza,Robert Lee,Scott Barlow,Sonia Basser,Tammy Evans,Vijay Rao,Kerry Purcell";
+		String GMLTbroadcastGroup = "Justin Pitcher,Anthony Best,Andrew Johnstone-Burt,David Mancl,Jennifer Moxon,Joanna Batstone,Jo Dooley,Kathleen McCudden,Nicholas Flood,Omeed Kroll,Paul Wilson,Rhody Burton,Riccardo Forlenza,Robert Lee,Scott Barlow,Sonia Basser,Tammy Evans,Vijay Rao,Kerry Purcell";
+		String AppTeamBroadcastGroup = "Justin Pitcher,Adeel Zafar,Kimberly Burgos,Edwin Hoi,James Garwoli,Michael Garry,Joseph Wakim,Mitchell Brien";
 		//String broadcastGroup = "Justin Pitcher,Adeel Zafar,Kimberly Burgos";
 		
 		
@@ -185,15 +186,26 @@ public class SendCoinsBean extends AbstractMaintenanceForm<String, UserReward> {
 			for(AppUser user: allUsers)
 			{
 				
-				if (!getRecipient().equals("GMLT"))
+				if (!getRecipient().equals("GMLT") && !getRecipient().equals("AppTeam"))
 				{
 					user = getUserSvc().getById(getRecipient());
 				}
 				else
 				{
-					if (!broadcastGroup.contains(user.getLogin()))
+				
+					if (getRecipient().equals("GMLT"))
 					{
-						continue;
+						if (!GMLTbroadcastGroup.contains(user.getLogin()))
+						{
+							continue;
+						}
+					}
+					if (getRecipient().equals("AppTeam"))
+					{
+						if (!AppTeamBroadcastGroup.contains(user.getLogin()))
+						{
+							continue;
+						}
 					}
 				}
 				
@@ -240,7 +252,7 @@ public class SendCoinsBean extends AbstractMaintenanceForm<String, UserReward> {
 				
 				SendMail sendmail = new SendMail();
 			
-				if (!getRecipient().equals("GMLT"))
+				if (!getRecipient().equals("GMLT") && !getRecipient().equals("AppTeam"))
 				{
 					sendmail.sendMailusingSendGrid(messageBody, user.getMobile());
 					sendmail.sendMailusingSendGrid(messageBody2, user.getMobile());
